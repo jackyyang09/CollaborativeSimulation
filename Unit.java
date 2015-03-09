@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public abstract class Unit extends Actor
 {
-    protected int currentHp; //current hp of the nasd
+    protected int currentHp; //current hp of the units
     protected int maxHp; //max hp of the unit
     protected int speed; //speed of which unit moves
     protected int damage; //damage unit can deal
