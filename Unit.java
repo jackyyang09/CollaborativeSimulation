@@ -16,6 +16,21 @@ public abstract class Unit extends Actor
     protected boolean dead; //sees if unit is dead
     
     /**
+     * Deal amount of damage to a unit
+     * @param dmg      Damage dealt to the unit
+     * @return boolean   Returns true if value is changed and false otherwise
+     */
+    public boolean dealDamage (int dmg){
+        if (dmg >= 0){
+            currentHp -= dmg;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    /**
      * Sets unit's current Hp
      * @param crtHp      Current Hp of the unit
      * @return boolean   Returns true if value is changed and false otherwise
