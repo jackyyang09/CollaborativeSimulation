@@ -4,13 +4,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Super class buildings, abstract
  * 
  * @Jacky Yang
- * @Day 1 WIP 
+ * @Day 2 WIP 
  */
 public abstract class Buildings extends Actor
 {
-    private int health;
-    private int maxHealth;
-    private int buildTime;
+    protected int health;
+    protected int maxHealth;
+    protected int buildTime;
     /**
      * Returns private variable "health"
      */
