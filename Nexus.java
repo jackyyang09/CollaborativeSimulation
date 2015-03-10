@@ -16,14 +16,15 @@ public class Nexus extends Buildings
     public void act() 
     {
         if (goldGen == 2){gold++;} //Generates gold every 2 acts
-        //barracksGen();
+        goldGen++;
+        barracksGen();
     }    
     
     private void barracksGen()
     {
         if (gold >= 1000)
         {
-            getWorld().spawnBuilding();
+            //getWorld().spawnBuilding();
             gold -= 1000;
         }
     }
