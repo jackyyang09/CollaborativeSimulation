@@ -14,6 +14,13 @@ public abstract class Unit extends Actor
     protected int damage; //damage unit can deal
     protected int range; //the range where the unit can attack other units
     protected boolean dead; //sees if unit is dead
+    protected int xValue; //x value of the unit
+    protected int yValue; //y value of the unit
+    
+    public void pathFinding(int x, int y){
+        turnTowards(x, y);
+        move(speed);
+    }
     
     /**
      * Deal amount of damage to a unit
@@ -112,8 +119,6 @@ public abstract class Unit extends Actor
     public void setDead (boolean hasDied){
         dead = hasDied;
     }
-    
-
     
     /**
      * Returns unit's current hp
