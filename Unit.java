@@ -1,118 +1,171 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Manger class
+ * Unit is a unit.
  * 
- * @Jacky Yang, Ryan Huang 
- * @Day 3 WIP
+ * @author Kris Leung
+ * @version Mar 2015
  */
-public class Player extends Actor
+public abstract class Unit extends Actor
 {
-    private int gold;
-    private boolean prepare = false;
-    private int player;
-    private int buyCount = 0;
-    private int buildPerc = 0;
-    private Boolean[] occupied = new Boolean[5];
-    private Nexus nexus;
-    private Buildings buildings;
-    public Player(int AI)
-    {
-        player = AI;
-        nexus = new Nexus();
+    protected int currentHp; //current hp of the units
+    protected int maxHp; //max hp of the unit
+    protected int speed; //speed of which unit moves
+    protected int damage; //damage unit can deal
+    protected int range; //the range where the unit can attack other units
+    protected boolean dead; //sees if unit is dead
+    protected int xValue; //x value of the unit
+    protected int yValue; //y value of the unit
+    protected boolean side; //true if playerOne side and false if playerTwo side
+    
+    public void pathFinding(int x, int y){
+        turnTowards(x, y);
+        move(speed);
     }
-
+    
     /**
-     * Prepare things
+     * Deal amount of damage to a unit
+     * @param dmg      Damage dealt to the unit
+     * @return boolean   Returns true if value is changed and false otherwise
      */
-    public void prepare()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            occupied[i] = false;
+    public boolean dealDamage (int dmg){
+        if (dmg >= 0){
+            currentHp -= dmg;
+            return true;
         }
-        occupied[2] = true;
-        if (player == 1){getWorld().addObject(nexus, 100, slot(2));}
-        if (player == 2){getWorld().addObject(nexus, 860, slot(2));}
-        prepare = true;
+        else{
+            return false;
+        }
     }
-
+    
     /**
-     * Act - do whatever the Player wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Sets unit's current Hp
+     * @param crtHp      Current Hp of the unit
+     * @return boolean   Returns true if value is changed and false otherwise
      */
-    public void act() 
-    {
-        if (prepare == false){prepare();}
-        gold++;
-        //if (buyCount < 5){buy();}
-    }
-
-    public void buyBarraks()
-    {
-        if (gold >= 1000)
-        {
-            int val = Greenfoot.getRandomNumber(5);
-            if (occupied[val] == false){
-                if (buyCount == 0){buildPerc = 100;}
-                if (player == 1){getWorld().addObject(new Barracks(), 100, slot(val));}
-                if (player == 2){getWorld().addObject(new Barracks(), 860, slot(val));}
-                occupied[val] = true;
-                buyCount++;
-                gold -= 1000;
-            }
+    public boolean setCurrentHp (int crtHp){
+        if (crtHp >= 0){
+            currentHp = crtHp;
+            return true;
+        }
+        else{
+            return false;
         }
     }
-
-    public void buyFactory()
-    {
-        if (gold >= 1500)
-        {
-            int val = Greenfoot.getRandomNumber(5);
-            if (occupied[val] == false){
-                if (buyCount > 1 && player == 1){buildPerc = 20;}
-                if (player == 1){getWorld().addObject(new Barracks(), 100, slot(val));}
-                if (player == 2){getWorld().addObject(new Barracks(), 860, slot(val));}
-                occupied[val] = true;
-                buyCount++;
-                gold -= 1000;
-            }
-        }
-    }
-
+    
     /**
-     * enter a number to spawn in a certian building at a specfic location
-     * <p>
-     * Barrack = 0
-     * @param buildingCode code that correpsonds to building
+     * Sets unit's max Hp
+     * @param mxHp      Max Hp of the unit
+     * @return boolean   Returns true if value is changed and false otherwise
      */
-    public void spawnBuilding(int buildingCode)
-    {
-        if (buildingCode == 0)
-        {
-            //spawn barracks
+    public boolean setMaxHp (int mxHp){
+        if (mxHp >= 0){
+            maxHp = mxHp;
+            return true;
+        }
+        else{
+            return false;
         }
     }
-
+    
     /**
-     * sets the location of a building
-     * @param loc is the slot number; 0 is slot 1 and so on
+     * Sets unit's speed
+     * @param spd      Speed of the unit
+     * @return boolean   Returns true if value is changed and false otherwise
      */
-    public int slot(int loc)
-    {
-        switch (loc)
-        {
-            case 0: // slot 1
-            return 64;
-            case 1: // slot 2
-            return 192;
-            case 2: // slot 3
-            return 320;
-            case 3: //slot 4
-            return 448;
-            case 4: //slot 5
-            return 576;
+    public boolean setSpeed (int spd){
+        if (spd >= 0){
+            speed = spd;
+            return true;
         }
-        return 0; //outside the world
+        else{
+            return false;
+        }
+    }
+    
+    /**
+     * Sets unit's damage
+     * @param dmg      Damage of the unit
+     * @return boolean   Returns true if value is changed and false otherwise
+     */
+    public boolean setDamage (int dmg){
+        if (dmg >= 0){
+            damage = dmg;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    /**
+     * Sets unit's range
+     * @param rng      Speed of the unit
+     * @return boolean   Returns true if value is changed and false otherwise
+     */
+    public boolean setRange (int rng){
+        if (rng >= 0){
+            range = rng;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    /**
+     * Sets if the unit is dead or not
+     * @param hasDied   Unit is dead or not
+     */
+    public void setDead (boolean hasDied){
+        dead = hasDied;
+    }
+    
+    /**
+     * Returns unit's current hp
+     * @return int   Returns current hp of unit
+     */
+    public int getCurrentHp(){
+        return currentHp;
+    }
+    
+    /**
+     * Returns unit's max hp
+     * @return int   Returns max hp of unit
+     */
+    public int getMaxHp(){
+        return maxHp;
+    }
+    
+        /**
+     * Returns unit's damage
+     * @return int   Returns unit damage that it can deal
+     */
+    public int getDamage(){
+        return damage;
+    }
+    
+        /**
+     * Returns unit's range
+     * @return int   Returns unit range of attack
+     */
+    public int getRange(){
+        return range;
+    }
+    
+    /**
+     * Returns if unit is dead or not
+     * @return boolean   Returns true if unit is dead and false otherwise
+     */
+    public boolean getDead (){
+        return dead;
+    }
+    
+    /**
+     * Returns what side the unit is on
+     * @return boolean   Returns true if unit is on playerOne side and false if playerTwo
+     */
+    public boolean getSide(){
+        return side;
     }
 }
