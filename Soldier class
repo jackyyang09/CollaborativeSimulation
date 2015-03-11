@@ -8,9 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Soldier extends Unit
 {
-    private int xValue = 0;
-    private int yValue = 0;
-    
+    // private int xValue = 0;
+    // private int yValue = 0;
+    GoldMine gMine = new GoldMine();
+
     /**
      * Constructor for soldier
      */
@@ -28,49 +29,9 @@ public class Soldier extends Unit
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act(){
-        pathFinding(xValue, yValue);
+        pathFinding(gMine.getX(), gMine.getY());
         if (getDead() == true){
             getWorld().removeObject(this);
         }
     }    
-
-    /**
-     * Set where the enemy should converge
-     * @param x   X value of the coordinate
-     * @param y   Y value of the coordinate
-     */
-    public void pathFinding(int x, int y){
-        turnTowards(x, y);
-        move(speed);
-    }
-    
-    /**
-     * Set x value where enemy should converge
-     * @param x   X value to be set
-     * @return boolean   Returns true if value is changed and false otherwise
-     */
-    public boolean setXValue(int x){
-        if (x >= 0){
-            xValue = x;
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    
-     /**
-     * Set y value where enemy should converge
-     * @param y   Y value to be set
-     * @return boolean   Returns true if value is changed and false otherwise
-     */
-    public boolean setYValue(int y){
-        if (y >= 0){
-            yValue = y;
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
 }
