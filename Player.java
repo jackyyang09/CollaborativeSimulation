@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Manger class
+ * Manager class
  * 
  * @Jacky Yang, Ryan Huang 
  * @Day 3 WIP
