@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Manager class
+ * Manger class
  * 
  * @Jacky Yang, Ryan Huang 
  * @Day 3 WIP
@@ -12,9 +12,10 @@ public class Player extends Actor
     private boolean prepare = false;
     private int player;
     private int buyCount = 0;
+    private int buildPerc = 0;
     private Boolean[] occupied = new Boolean[5];
     private Nexus nexus;
-    private Buildings barracks;
+    private Buildings buildings;
     public Player(int AI)
     {
         player = AI;
@@ -44,15 +45,32 @@ public class Player extends Actor
     {
         if (prepare == false){prepare();}
         gold++;
-        if (buyCount < 5){buy();}
+        //if (buyCount < 5){buy();}
     }
 
-    public void buy()
+    public void buyBarraks()
     {
         if (gold >= 1000)
         {
             int val = Greenfoot.getRandomNumber(5);
             if (occupied[val] == false){
+                if (buyCount == 0){buildPerc = 100;}
+                if (player == 1){getWorld().addObject(new Barracks(), 100, slot(val));}
+                if (player == 2){getWorld().addObject(new Barracks(), 860, slot(val));}
+                occupied[val] = true;
+                buyCount++;
+                gold -= 1000;
+            }
+        }
+    }
+
+    public void buyFactory()
+    {
+        if (gold >= 1500)
+        {
+            int val = Greenfoot.getRandomNumber(5);
+            if (occupied[val] == false){
+                if (buyCount > 1 && player == 1){buildPerc = 20;}
                 if (player == 1){getWorld().addObject(new Barracks(), 100, slot(val));}
                 if (player == 2){getWorld().addObject(new Barracks(), 860, slot(val));}
                 occupied[val] = true;
