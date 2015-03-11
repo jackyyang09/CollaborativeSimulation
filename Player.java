@@ -2,26 +2,37 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Manger class
- * Write a description of class Player here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Jacky Yang, Ryan Huang 
+ * @Day 3 WIP
  */
 public class Player extends Actor
 {
     private int gold;
     private boolean prepare = false;
+    private int player;
+    private int buyCount = 0;
+    private Boolean[] occupied = new Boolean[5];
     private Nexus nexus;
-    private Barracks barracks;
-    public Player()
+    private Buildings barracks;
+    public Player(int AI)
     {
+        player = AI;
         nexus = new Nexus();
-        barracks = new Barracks();
     }
 
+    /**
+     * Prepare things
+     */
     public void prepare()
     {
-        getWorld().addObject(nexus, 100, slot(2));
+        for (int i = 0; i < 5; i++)
+        {
+            occupied[i] = false;
+        }
+        occupied[2] = true;
+        if (player == 1){getWorld().addObject(nexus, 100, slot(2));}
+        if (player == 2){getWorld().addObject(nexus, 860, slot(2));}
         prepare = true;
     }
 
@@ -33,14 +44,21 @@ public class Player extends Actor
     {
         if (prepare == false){prepare();}
         gold++;
-        System.out.println(gold);
+        if (buyCount < 5){buy();}
     }
 
     public void buy()
     {
         if (gold >= 1000)
         {
-            getWorld().addObject(barracks, 100, slot(1));
+            int val = Greenfoot.getRandomNumber(5);
+            if (occupied[val] == false){
+                if (player == 1){getWorld().addObject(new Barracks(), 100, slot(val));}
+                if (player == 2){getWorld().addObject(new Barracks(), 860, slot(val));}
+                occupied[val] = true;
+                buyCount++;
+                gold -= 1000;
+            }
         }
     }
 
@@ -60,21 +78,22 @@ public class Player extends Actor
 
     /**
      * sets the location of a building
+     * @param loc is the slot number; 0 is slot 1 and so on
      */
     public int slot(int loc)
     {
         switch (loc)
         {
             case 0: // slot 1
-            return 128;
+            return 64;
             case 1: // slot 2
-            return 256;
+            return 192;
             case 2: // slot 3
-            return 384;
+            return 320;
             case 3: //slot 4
-            return 512;
+            return 448;
             case 4: //slot 5
-            return 640;
+            return 576;
         }
         return 0; //outside the world
     }
