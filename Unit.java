@@ -1,4 +1,3 @@
-
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -12,31 +11,34 @@ public abstract class Unit extends Actor
     protected int currentHp; //current hp of the units
     protected int maxHp; //max hp of the unit
     protected int speed; //speed of which unit moves
+    protected int startSpeed;
     protected int damage; //damage unit can deal
     protected int range; //the range where the unit can attack other units
     protected boolean dead; //sees if unit is dead
     protected int xValue; //x value of the unit
     protected int yValue; //y value of the unit
     protected boolean side; //true if playerOne side and false if playerTwo side
-    Building building = new Building();
-    Building building2 = new Building();
+    Buildings building = new Buildings();
+    Buildings building2 = new Buildings();
+    
     public void pathFinding(int x, int y){
         turnTowards(x, y);
         move(speed);
         shootRange();
     }
     
-    public void shootRange(){
-        building = (Building)getOneObjectAtOffset(30, 0, Building.class);
-        building2 = (Building)getOneObjectAtOffset(-30, 0, Building.class);
+    public boolean shootRange(){
+        building = (Buildings)getOneObjectAtOffset(30, 0, Buildings.class);
+        building2 = (Buildings)getOneObjectAtOffset(-30, 0, Buildings.class);
         if (building != null || building2 != null){
-            stop();
+            speed = 0;
+            return true;
+        }
+        else{
+            return false;   
         }
     }
     
-    public void stop(){
-        speed = 0;
-    }
     /**
      * Deal amount of damage to a unit
      * @param dmg      Damage dealt to the unit
