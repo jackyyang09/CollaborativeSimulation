@@ -9,18 +9,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Miner extends Unit
 {
     private int goldCarry = 0;
-    GoldMine gMine = new GoldMine();
-
+    private int maxCarry = 100;
+    GoldMine gMine;
+    Nexus nexus;
     /**
      * Constructor for soldier
      */
-    public Miner(){
+    public Miner(GoldMine g, Nexus n){
         currentHp = 100;
         maxHp = 100;
         speed = 3;
+        startSpeed = 3;
         damage = 0;
         range = 5;
         dead = false;
+        gMine = g;
+        nexus = n;
     }
 
     /**
@@ -28,9 +32,24 @@ public class Miner extends Unit
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act(){
-        pathFinding(gMine.getX(), gMine.getY());
         if (getDead() == true){
             getWorld().removeObject(this);
+        }
+        if (goldCarry == maxCarry){
+            pathFinding(nexus.getX(), nexus.getY());
+            speed = startSpeed;
+        }
+        else{
+            pathFinding(gMine.getX(), gMine.getY());
+            if(shootRange() == true){
+                gMine.subAmount(1);
+                goldCarry += 1;
+                System.out.println(goldCarry);
+            }
+        }
+        if (this.isTouching(Nexus.class)){
+            nexus.setGold(goldCarry);
+            goldCarry = 0;
         }
     }    
 }
