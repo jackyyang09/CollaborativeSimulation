@@ -13,6 +13,7 @@ public class Player extends Actor
     private int player;
     private int buyCount;
     private int buildPerc;
+    private int barracksRoll, factoryRoll;
     private Boolean[] occupied = new Boolean[5];
     private Nexus nexus;
     public Player(int AI)
@@ -100,9 +101,9 @@ public class Player extends Actor
                 int factoryRoll = Greenfoot.getRandomNumber(100);
             }while(factoryRoll == barracksRoll);
             do{
-                if (barracksRoll < buildPerc){buyBbarracks();}
+                if (barracksRoll < buildPerc){buyBarracks();}
                 if (factoryRoll < buildPerc){buyFactory();}
-            }while(bararcksRoll >= buildPerc && factoryRoll >= buildPerc);
+            }while(barracksRoll >= buildPerc && factoryRoll >= buildPerc);
         }
     }
 
