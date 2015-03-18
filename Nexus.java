@@ -32,4 +32,14 @@ public class Nexus extends Buildings
     {
         return gold;
     }
+    
+    public boolean setGold(int gold){
+        if(gold>=0){
+            amountGold += gold;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
