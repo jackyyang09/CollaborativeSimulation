@@ -15,7 +15,8 @@ public class Map extends World
      */
     public Map()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        // Create a new world with  960x640 cells
+        super(960, 640, 1);
         Player playerOne = new Player(1);
         addObject(playerOne,0,0);
         GoldMine goldMineOne = new GoldMine();
