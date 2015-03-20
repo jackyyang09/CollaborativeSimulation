@@ -10,6 +10,7 @@ public class Player extends Actor
 {
     private int gold;
     private boolean prepare = false;
+    private boolean buying = false;
     private int player;
     private int buyCount;
     private int buildPerc;
@@ -54,7 +55,7 @@ public class Player extends Actor
         }
         buyUnits();
     }
-    
+
     /**
      * adds a the given amount of gold to current gold
      * @param amtgold amount of gold to be added
@@ -86,6 +87,7 @@ public class Player extends Actor
                 occupied[val] = true;
                 buyCount++;
                 gold -= 1000;
+                buying = false;
             }
         }
     }
@@ -104,13 +106,14 @@ public class Player extends Actor
                 occupied[val] = true;
                 buyCount++;
                 gold -= 1500;
+                buying = false;
             }
         }
     }
-    
+
     private void buyUnits()
     {
-        if (buyCount == 0){}
+        //if (buyCount == 0){}
     }
 
     /**
@@ -122,25 +125,27 @@ public class Player extends Actor
         if (buyCount == 1){buildPerc = 50;}
         if (buyCount == 2){buildPerc = 40;}
         if (buyCount == 3){buildPerc = 30;}
-        do{
-            barracksRoll = Greenfoot.getRandomNumber(100);
-            factoryRoll = Greenfoot.getRandomNumber(100);
-        }while(factoryRoll == barracksRoll);
-        if (barracksCount > factoryCount){buildPerc = 100 - buildPerc;}
-        do{
-            if (barracksRoll < buildPerc)
-            {
-                barracksCount++;
-                buyBarracks();
-            }
-            if (factoryRoll < (100 - buildPerc))
-            {
-                factoryCount++;
-                buyFactory();
-            }
-        }while(barracksRoll >= buildPerc && factoryRoll >= buildPerc);
+        if (buying == true){
+            do{
+                barracksRoll = Greenfoot.getRandomNumber(100);
+                factoryRoll = Greenfoot.getRandomNumber(100);
+            }while(factoryRoll == barracksRoll);
+            if (barracksCount > factoryCount){buildPerc = 100 - buildPerc;}
+            do{
+                if (barracksRoll < buildPerc)
+                {
+                    barracksCount++;
+                    buyBarracks();
+                }
+                if (factoryRoll < (100 - buildPerc))
+                {
+                    factoryCount++;
+                    buyFactory();
+                }
+            }while(barracksRoll >= buildPerc && factoryRoll >= buildPerc);
+        }
     }
-    
+
     /**
      * sets the location of a building
      * @param loc is the slot number; 0 is slot 1 and so on
