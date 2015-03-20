@@ -126,9 +126,18 @@ public class Player extends Actor
             barracksRoll = Greenfoot.getRandomNumber(100);
             factoryRoll = Greenfoot.getRandomNumber(100);
         }while(factoryRoll == barracksRoll);
+        if (barracksCount > factoryCount){buildPerc = 100 - buildPerc;}
         do{
-            if (barracksRoll < buildPerc){buyBarracks();}
-            if (factoryRoll < (100 - buildPerc)){buyFactory();}
+            if (barracksRoll < buildPerc)
+            {
+                barracksCount++;
+                buyBarracks();
+            }
+            if (factoryRoll < (100 - buildPerc))
+            {
+                factoryCount++;
+                buyFactory();
+            }
         }while(barracksRoll >= buildPerc && factoryRoll >= buildPerc);
     }
     
@@ -136,7 +145,7 @@ public class Player extends Actor
      * sets the location of a building
      * @param loc is the slot number; 0 is slot 1 and so on
      */
-    public int slot(int loc)
+    private int slot(int loc)
     {
         switch (loc)
         {
