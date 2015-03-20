@@ -15,7 +15,6 @@ public class Player extends Actor
     private int buildPerc;
     private int barracksRoll, factoryRoll;
     private Boolean[] occupied = new Boolean[5];
-    private Nexus nexus;
     public Player(int AI)
     {
         player = AI;
@@ -33,8 +32,6 @@ public class Player extends Actor
             occupied[i] = false;
         }
         occupied[2] = true;
-        if (player == 1){getWorld().addObject(nexus, 100, slot(2));}
-        if (player == 2){getWorld().addObject(nexus, 860, slot(2));}
         prepare = true;
     }
 
@@ -49,6 +46,7 @@ public class Player extends Actor
         if (buyCount < 5){
             buyBuildings();
         }
+        System.out.println(gold);
     }
 
     /**
