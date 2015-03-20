@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Manager class
  * 
- * @Jacky Yang, Ryan Huang
- * @Day 4 WIP
+ * @author Jacky Yang, Ryan Huang
+ * @version Day 4 WIP
  */
 public class Player extends Actor
 {
