@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Manager class
  * 
- * @Jacky Yang, Ryan Huang 
+ * @Jacky Yang, Ryan Huang
  * @Day 4 WIP
  */
 public class Player extends Actor
@@ -14,10 +14,16 @@ public class Player extends Actor
     private int buyCount;
     private int buildPerc;
     private int barracksRoll, factoryRoll;
+    private int barracksCount, factoryCount;
     private Boolean[] occupied = new Boolean[5];
+    private Nexus nexus;
+    /**
+     * Instantiates Player 
+     */
     public Player(int AI)
     {
         player = AI;
+        nexus = new Nexus();
         buyCount = 0;
         buildPerc = 0;
     }
@@ -25,7 +31,7 @@ public class Player extends Actor
     /**
      * Prepare things
      */
-    public void prepare()
+    private void prepare()
     {
         for (int i = 0; i < 5; i++)
         {
@@ -46,9 +52,10 @@ public class Player extends Actor
         if (buyCount < 5){
             buyBuildings();
         }
-        System.out.println(gold);
+        buyUnits();
     }
-/**
+    
+    /**
      * adds a the given amount of gold to current gold
      * @param amtgold amount of gold to be added
      */
@@ -64,10 +71,11 @@ public class Player extends Actor
     {
         return gold;
     }
+
     /**
      * Buys a Barrack and places it on the appropriate area and decreases gold
      */
-    public void buyBarracks()
+    private void buyBarracks()
     {
         if (gold >= 1000)
         {
@@ -85,45 +93,45 @@ public class Player extends Actor
     /**
      * Buys a War Factory and places it on the appropriate area and decreases gold
      */
-    public void buyFactory()
+    private void buyFactory()
     {
         if (gold >= 1500)
         {
             int val = Greenfoot.getRandomNumber(5);
             if (occupied[val] == false){
-                if (player == 1){getWorld().addObject(new Barracks(), 100, slot(val));}
-                if (player == 2){getWorld().addObject(new Barracks(), 860, slot(val));}
+                if (player == 1){getWorld().addObject(new WarFactory(), 100, slot(val));}
+                if (player == 2){getWorld().addObject(new WarFactory(), 860, slot(val));}
                 occupied[val] = true;
                 buyCount++;
                 gold -= 1500;
             }
         }
     }
-
-    /**
-     * Decides to buy the buildings according to the player AI and how many buildings its bought before
-     */
-    public void buyBuildings()
-    {
-        if (buyCount == 0){buyBarracks();}
-        if (buyCount == 1){
-            buildPerc = 50;
-            do{
-                int barracksRoll = Greenfoot.getRandomNumber(100);
-                int factoryRoll = Greenfoot.getRandomNumber(100);
-            }while(factoryRoll == barracksRoll);
-            do{
-                if (barracksRoll < buildPerc){buyBarracks();}
-                if (factoryRoll < buildPerc){buyFactory();}
-            }while(barracksRoll >= buildPerc && factoryRoll >= buildPerc);
-        }
-    }
-
-    public void buyUnits()
+    
+    private void buyUnits()
     {
         if (buyCount == 0){}
     }
 
+    /**
+     * Decides to buy the buildings according to the player AI and how many buildings its bought before
+     */
+    private void buyBuildings()
+    {
+        if (buyCount == 0){buyBarracks();}
+        if (buyCount == 1){buildPerc = 50;}
+        if (buyCount == 2){buildPerc = 40;}
+        if (buyCount == 3){buildPerc = 30;}
+        do{
+            barracksRoll = Greenfoot.getRandomNumber(100);
+            factoryRoll = Greenfoot.getRandomNumber(100);
+        }while(factoryRoll == barracksRoll);
+        do{
+            if (barracksRoll < buildPerc){buyBarracks();}
+            if (factoryRoll < (100 - buildPerc)){buyFactory();}
+        }while(barracksRoll >= buildPerc && factoryRoll >= buildPerc);
+    }
+    
     /**
      * sets the location of a building
      * @param loc is the slot number; 0 is slot 1 and so on
