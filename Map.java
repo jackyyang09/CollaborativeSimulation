@@ -23,7 +23,8 @@ public class Map extends World
         addObject(goldMineOne,580,320);
         GoldMine goldMineTwo = new GoldMine();
         addObject(goldMineTwo,380,320);
-        prepare();
+        Nexus nexusOne = new Nexus();
+        addObject(nexusOne,100,320);
     }
 
     /**
