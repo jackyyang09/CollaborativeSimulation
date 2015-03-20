@@ -48,7 +48,22 @@ public class Player extends Actor
         }
         System.out.println(gold);
     }
+/**
+     * adds a the given amount of gold to current gold
+     * @param amtgold amount of gold to be added
+     */
+    public void addGold(int amtgold)
+    {
+        gold += amtgold;
+    }
 
+    /**
+     * returns current amount of gold
+     */
+    public int getGold()
+    {
+        return gold;
+    }
     /**
      * Buys a Barrack and places it on the appropriate area and decreases gold
      */
