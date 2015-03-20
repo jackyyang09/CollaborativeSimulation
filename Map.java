@@ -57,4 +57,21 @@ public class Map extends World
         }
         return 0;
     }
+    
+    /**
+     * Static method that gets the distance between the x,y coordinates of two Actors
+     * using Pythagorean Theorum.
+     * 
+     * @param a     First Actor
+     * @param b     Second Actor
+     * @return float
+     */
+    public static float getDistance (Actor a, Actor b)
+    {
+        double distance;
+        double xLength = a.getX() - b.getX();
+        double yLength = a.getY() - b.getY();
+        distance = Math.sqrt(Math.pow(xLength, 2) + Math.pow(yLength, 2));
+        return (float)distance;
+    }
 }
