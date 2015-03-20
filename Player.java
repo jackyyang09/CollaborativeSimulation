@@ -19,7 +19,6 @@ public class Player extends Actor
     public Player(int AI)
     {
         player = AI;
-        nexus = new Nexus();
         buyCount = 0;
         buildPerc = 0;
     }
