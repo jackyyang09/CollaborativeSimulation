@@ -229,8 +229,8 @@ public abstract class Unit extends Actor
     
     /**
      * Sets unit's damage
-     * @param dmg      Damage of the unit
-     * @return boolean   Returns true if value is changed and false otherwise
+     * @param dmg Damage of the unit
+     * @return boolean Returns true if value is changed and false otherwise
      */
     public boolean setDamage (int dmg){
         if (dmg >= 0){
@@ -244,8 +244,8 @@ public abstract class Unit extends Actor
     
     /**
      * Sets unit's range
-     * @param rng      Speed of the unit
-     * @return boolean   Returns true if value is changed and false otherwise
+     * @param rng Speed of the unit
+     * @return boolean Returns true if value is changed and false otherwise
      */
     public boolean setRange (int rng){
         if (rng >= 0){
@@ -259,7 +259,7 @@ public abstract class Unit extends Actor
     
     /**
      * Sets if the unit is dead or not
-     * @param hasDied   Unit is dead or not
+     * @param hasDied Unit is dead or not
      */
     public void setDead (boolean hasDied){
         dead = hasDied;
@@ -267,7 +267,7 @@ public abstract class Unit extends Actor
     
     /**
      * Returns unit's current hp
-     * @return int   Returns current hp of unit
+     * @return int Returns current hp of unit
      */
     public int getCurrentHp(){
         return currentHp;
@@ -275,7 +275,7 @@ public abstract class Unit extends Actor
     
     /**
      * Returns unit's max hp
-     * @return int   Returns max hp of unit
+     * @return int Returns max hp of unit
      */
     public int getMaxHp(){
         return maxHp;
@@ -283,7 +283,7 @@ public abstract class Unit extends Actor
     
         /**
      * Returns unit's damage
-     * @return int   Returns unit damage that it can deal
+     * @return int Returns unit damage that it can deal
      */
     public int getDamage(){
         return damage;
@@ -291,7 +291,7 @@ public abstract class Unit extends Actor
     
         /**
      * Returns unit's range
-     * @return int   Returns unit range of attack
+     * @return int Returns unit range of attack
      */
     public int getRange(){
         return range;
@@ -299,7 +299,7 @@ public abstract class Unit extends Actor
     
     /**
      * Returns if unit is dead or not
-     * @return boolean   Returns true if unit is dead and false otherwise
+     * @return boolean Returns true if unit is dead and false otherwise
      */
     public boolean getDead (){
         return dead;
@@ -307,7 +307,7 @@ public abstract class Unit extends Actor
     
     /**
      * Returns what side the unit is on
-     * @return boolean   Returns true if unit is on playerOne side and false if playerTwo
+     * @return boolean Returns true if unit is on playerOne side and false if playerTwo
      */
     public boolean getSide(){
         return side;
