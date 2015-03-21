@@ -1,18 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
- * Write a description of class Gold here.
+ * A goldmine for units to collect gold.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Kajamugesh Raneethran) 
+ * @version (February 29th, 2015)
  */
 public class GoldMine extends Buildings
 {
-    protected int amount;
-    protected boolean propertyOne;
-    protected boolean propertyTwo;
-    protected int maxAmount;
-    protected int regen;
-    protected int time = 0;
+    protected int amount;//current amount of gold in the mine
+    protected boolean propertyOne;//true if controlled by player one
+    protected boolean propertyTwo;//true if controlled by player two
+    protected int maxAmount;//maximum amount of gold that can be in the mine
+    protected int regen;//amount of time required for gold to be added
+    protected int time = 0;//time left until gold is added to mine
     public GoldMine()
     {
         maxAmount= 5000;
@@ -25,6 +25,7 @@ public class GoldMine extends Buildings
     /**
      * Act - do whatever the Gold wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
+     * regenerates gold if enough acts have passed
      */
     public void act() 
     {
@@ -39,16 +40,26 @@ public class GoldMine extends Buildings
         }
     } 
 
+    /**
+     * returns the Y co-ordinate of the gold mine
+     */
     public int getY()
     {
         return getY();
     }
 
+    /**
+     * returns the X co-ordinate of the gold mine
+     */
     public int getX()
     {
         return getX();
     }
 
+    /**
+     * sets amount of gold in the gold mine
+     * @param amount     amount
+     */
     public void setAmount(int amount)
     {
         if (amount<0)
@@ -57,6 +68,11 @@ public class GoldMine extends Buildings
         }
     }
 
+    /**
+     * subtracts amount of gold, or adds if negative, in the gold mine
+     * doesn't allow negative  current amounts or past max amount
+     * @param amount     amount taken
+     */
     public boolean subAmount(int amount)
     {
         int request = amount - this.amount;
@@ -76,16 +92,28 @@ public class GoldMine extends Buildings
         }
     }
 
+    /**
+     * returns amount of gold in the gold mine
+     */
     public int getAmount()
     {
         return amount;
     }
 
+    /**
+     * sets regeneration rate
+     * @param rate     the larger the number the longer
+     */
     public void regenRate(int rate)
     {
         regen = rate;
     }
 
+    /**
+     * decides which player gets control
+     * over the gold mine
+     * @param player     player one gets control if 1, player two gets control if 2
+     */
     public void control(int player)
     {
         if (player == 1)
