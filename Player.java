@@ -86,6 +86,7 @@ public class Player extends Actor
                 if (player == 2){getWorld().addObject(new Barracks(), 860, slot(val));}
                 occupied[val] = true;
                 buyCount++;
+                barracksCount++;
                 gold -= 1000;
                 buying = false;
             }
@@ -105,6 +106,7 @@ public class Player extends Actor
                 if (player == 2){getWorld().addObject(new WarFactory(), 860, slot(val));}
                 occupied[val] = true;
                 buyCount++;
+                factoryCount++;
                 gold -= 1500;
                 buying = false;
             }
@@ -121,6 +123,7 @@ public class Player extends Actor
      */
     private void buyBuildings()
     {
+        //buying = true;
         if (buyCount == 0){buyBarracks();}
         if (buyCount == 1){buildPerc = 50;}
         if (buyCount == 2){buildPerc = 40;}
@@ -133,16 +136,14 @@ public class Player extends Actor
             if (barracksCount > factoryCount){buildPerc = 100 - buildPerc;}
             do{
                 if (barracksRoll < buildPerc)
-                {
-                    barracksCount++;
-                    buyBarracks();
+                {                    
+                    buyBarracks();  
                 }
                 if (factoryRoll < (100 - buildPerc))
                 {
-                    factoryCount++;
                     buyFactory();
                 }
-            }while(barracksRoll >= buildPerc && factoryRoll >= buildPerc);
+            }while(barracksRoll >= buildPerc && factoryRoll >= buildPerc && buying == true);
         }
     }
 
