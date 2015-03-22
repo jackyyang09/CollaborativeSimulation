@@ -126,13 +126,19 @@ public class Player extends Actor
         if (buyCount == 0){decision = 1;}
         if (buyCount == 1){buildPerc = 50;}
         if (buyCount == 2){buildPerc = 25;}
-        if (buyCount == 3){buildPerc = 0;}
+        if (buyCount == 3){buildPerc = 1;}
         if (factoryCount > barracksCount){buildPerc = 100 - buildPerc;}
         do{
             barracksRoll = Greenfoot.getRandomNumber(100);
             factoryRoll = Greenfoot.getRandomNumber(100);
-            if (factoryRoll < buildPerc){decision = 2;}
-            if (barracksRoll < buildPerc){decision = 1;}
+            if (factoryCount > barracksCount || factoryCount == barracksCount){
+                if (barracksRoll < buildPerc){decision = 1;}
+                if (factoryRoll < buildPerc){decision = 2;}
+            }
+            else{
+                if (barracksRoll < (100 - buildPerc)){decision = 1;}
+                if (factoryRoll < (100 - buildPerc)){decision = 2;}
+            }
         }while(factoryRoll == barracksRoll && barracksRoll >= buildPerc && factoryRoll >= buildPerc);
     }
 
