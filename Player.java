@@ -125,9 +125,8 @@ public class Player extends Actor
     {
         if (buyCount == 0){decision = 1;}
         if (buyCount == 1){buildPerc = 50;}
-        if (buyCount == 2){buildPerc = 40;}
-        if (buyCount == 3){buildPerc = 20;}
-        if (buyCount == 4){buildPerc = 0;}
+        if (buyCount == 2){buildPerc = 25;}
+        if (buyCount == 3){buildPerc = 0;}
         if (factoryCount > barracksCount){buildPerc = 100 - buildPerc;}
         do{
             barracksRoll = Greenfoot.getRandomNumber(100);
