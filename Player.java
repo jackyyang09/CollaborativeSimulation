@@ -17,6 +17,7 @@ public class Player extends Actor
     private int barracksRoll, factoryRoll;
     private int barracksCount, factoryCount;
     private int decision;
+    private int cooldown;
     private Boolean[] occupied = new Boolean[5];
     private Nexus nexus;
     /**
@@ -42,6 +43,8 @@ public class Player extends Actor
         buyCount = 0;
         buildPerc = 0;
         decision = 3;
+        if (player == 1){cooldown = 600;}
+        if (player == 2){cooldown = 800;}
     }
 
     /**
@@ -52,10 +55,11 @@ public class Player extends Actor
     {
         if (prepare == false){prepare();}
         gold++;
+        cooldown--;
         if (buyCount < 4 && decision == 3){buyBuildings();}
         if (decision == 1 && gold >= 1000){buyBarracks();}
         if (decision == 2 && gold >= 1500){buyFactory();}
-        buyUnits();
+        if (barracksCount > 0 && cooldown <= 0){buyUnits();}
     }
 
     /**
@@ -115,7 +119,15 @@ public class Player extends Actor
 
     private void buyUnits()
     {
-        //if (buyCount == 0){}
+        if (player == 1){
+            getWorld().addObject(new Soldier(), 200, 320);
+            cooldown = 600;
+        }
+        if (player == 2){
+            getWorld().addObject(new Soldier(), 860, 320);
+            cooldown = 800;
+        }
+        gold -= 200; 
     }
 
     /**
@@ -134,8 +146,7 @@ public class Player extends Actor
             if (factoryCount > barracksCount || factoryCount == barracksCount){
                 if (barracksRoll < buildPerc){decision = 1;}
                 if (factoryRoll < buildPerc){decision = 2;}
-            }
-            else{
+            }else{
                 if (barracksRoll < (100 - buildPerc)){decision = 1;}
                 if (factoryRoll < (100 - buildPerc)){decision = 2;}
             }
