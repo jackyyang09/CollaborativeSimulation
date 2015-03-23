@@ -9,6 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Map extends World
 {
     private int location; // location of buildings
+    GoldMine goldMineOne = new GoldMine();
+    GoldMine goldMineTwo = new GoldMine();
+    Nexus nexusOne = new Nexus();
+    Nexus nexusTwo = new Nexus();
+    Player playerOne = new Player(1);
+    Player playerTwo = new Player(2);
+    
     /**
      * Constructor for objects of class Map.
      * 
@@ -17,14 +24,13 @@ public class Map extends World
     {    
         // Create a new world with  960x640 cells
         super(960, 640, 1);
-        Player playerOne = new Player(1);
         addObject(playerOne,0,0);
-        GoldMine goldMineOne = new GoldMine();
         addObject(goldMineOne,580,320);
-        GoldMine goldMineTwo = new GoldMine();
         addObject(goldMineTwo,380,320);
-        Nexus nexusOne = new Nexus();
         addObject(nexusOne,100,320);
+        addObject(nexusTwo,860,320);
+        spawnUnit(0, true);
+        spawnUnit(0, false);
     }
 
     /**
@@ -74,5 +80,22 @@ public class Map extends World
         double yLength = a.getY() - b.getY();
         distance = Math.sqrt(Math.pow(xLength, 2) + Math.pow(yLength, 2));
         return (float)distance;
+    }
+    
+    /**
+     * Method that spawns units in the world
+     * @param code     0 if miner and soldier otherwise
+     * @param side     true if player one and player two otherwise
+     */
+    public void spawnUnit (int code, boolean side){
+        if(code == 0){
+            if(side == true){
+                //true for player 1
+                addObject(new Miner(goldMineOne, nexusOne), 225, 320);
+            }
+            else{
+                addObject(new Miner(goldMineTwo, nexusTwo), 735, 320);
+            }
+        }
     }
 }
