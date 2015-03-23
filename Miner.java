@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Soldier is a sub-class of Unit
  * 
- * @author Kris Leung, Ryan Huang
+ * @author Kris Leung
  * @version Mar 2015
  */
 public class Miner extends Unit
@@ -13,11 +13,10 @@ public class Miner extends Unit
     GoldMine gMine;
     Nexus nexus;
     Player player;
-    
     /**
      * Constructor for soldier
      */
-    public Miner(GoldMine g, Nexus n){
+    public Miner(GoldMine g, Nexus n, Player p){
         currentHp = 100;
         maxHp = 100;
         speed = 1;
@@ -27,6 +26,7 @@ public class Miner extends Unit
         dead = false;
         gMine = g;
         nexus = n;
+        player = p;
     }
 
     /**
@@ -50,7 +50,7 @@ public class Miner extends Unit
             }
         }
         if (this.isTouching(Nexus.class)){
-            player.getGold(goldCarry);
+            player.addGold(goldCarry);
             goldCarry = 0;
         }
     }    
