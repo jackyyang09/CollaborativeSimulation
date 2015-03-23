@@ -55,9 +55,9 @@ public class Player extends Actor
     public void act() 
     {
         if (prepare == false){prepare();}
-        if (cooldown%5 == 0){gold++;}
-        cooldown--;
-        //System.out.println(gold);
+        //         if (cooldown%5 == 0){gold++;}
+        //         cooldown--;
+        System.out.println(gold);
         if (buyCount < 4 && decision == 3){buyBuildings();}
         if (decision == 1 && gold >= 1000){buyBarracks();}
         if (decision == 2 && gold >= 1500){buyFactory();}
@@ -121,15 +121,15 @@ public class Player extends Actor
 
     private void buyUnits()
     {
-        if (player == 1){
-            getWorld().addObject(new Soldier(), 200, 320);
-            cooldown = 2400;
-        }
-        if (player == 2){
-            getWorld().addObject(new Soldier(), 860, 320);
-            cooldown = 3200;
-        }
-        gold -= 200; 
+        //         if (player == 1){
+        //             getWorld().addObject(new Soldier(), 200, 320);
+        //             cooldown = 2400;
+        //         }
+        //         if (player == 2){
+        //             getWorld().addObject(new Soldier(), 860, 320);
+        //             cooldown = 3200;
+        //         }
+        //         gold -= 200; 
     }
 
     /**
