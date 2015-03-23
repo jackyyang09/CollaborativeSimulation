@@ -41,22 +41,6 @@ public class GoldMine extends Buildings
     } 
 
     /**
-     * returns the Y co-ordinate of the gold mine
-     */
-    public int getY()
-    {
-        return getY();
-    }
-
-    /**
-     * returns the X co-ordinate of the gold mine
-     */
-    public int getX()
-    {
-        return getX();
-    }
-
-    /**
      * sets amount of gold in the gold mine
      * @param amount     amount
      */
