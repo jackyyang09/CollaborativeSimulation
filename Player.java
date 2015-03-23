@@ -27,6 +27,11 @@ public class Player extends Actor
     {
         player = AI;
         nexus = new Nexus();
+        buyCount = 0;
+        buildPerc = 0;
+        decision = 3;
+        if (player == 1){cooldown = 2400;}
+        if (player == 2){cooldown = 3200;}
     }
 
     /**
@@ -40,11 +45,6 @@ public class Player extends Actor
         }
         occupied[2] = true;
         prepare = true;
-        buyCount = 0;
-        buildPerc = 0;
-        decision = 3;
-        if (player == 1){cooldown = 600;}
-        if (player == 2){cooldown = 800;}
     }
 
     /**
@@ -56,10 +56,11 @@ public class Player extends Actor
         if (prepare == false){prepare();}
         if (cooldown%5 == 0){gold++;}
         cooldown--;
+        //System.out.println(gold);
         if (buyCount < 4 && decision == 3){buyBuildings();}
         if (decision == 1 && gold >= 1000){buyBarracks();}
         if (decision == 2 && gold >= 1500){buyFactory();}
-        if (barracksCount > 0 && cooldown <= 0){buyUnits();}
+        if (barracksCount > 0 && cooldown <= 0 && gold >= 200){buyUnits();}
     }
 
     /**
@@ -121,11 +122,11 @@ public class Player extends Actor
     {
         if (player == 1){
             getWorld().addObject(new Soldier(), 200, 320);
-            cooldown = 600;
+            cooldown = 2400;
         }
         if (player == 2){
             getWorld().addObject(new Soldier(), 860, 320);
-            cooldown = 800;
+            cooldown = 3200;
         }
         gold -= 200; 
     }
