@@ -91,10 +91,10 @@ public class Map extends World
         if(code == 0){
             if(side == true){
                 //true for player 1
-                addObject(new Miner(goldMineOne, nexusOne), 225, 320);
+                addObject(new Miner(goldMineOne, nexusOne, playerOne), 225, 320);
             }
             else{
-                addObject(new Miner(goldMineTwo, nexusTwo), 735, 320);
+                addObject(new Miner(goldMineTwo, nexusTwo, playerTwo), 735, 320);
             }
         }
     }
