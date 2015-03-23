@@ -47,8 +47,8 @@ public class Miner extends Unit
                 System.out.println(goldCarry);
             }
         }
-        if (this.isTouching(Nexus.class)){
-            nexus.setGold(goldCarry);
+        if (this.isTouching(Player.class)){
+            player.setGold(goldCarry);
             goldCarry = 0;
         }
     }    
