@@ -12,14 +12,16 @@ public class Miner extends Unit
     private int maxCarry = 100;
     GoldMine gMine;
     Nexus nexus;
+    Player player;
+    
     /**
      * Constructor for soldier
      */
     public Miner(GoldMine g, Nexus n){
         currentHp = 100;
         maxHp = 100;
-        speed = 3;
-        startSpeed = 3;
+        speed = 1;
+        startSpeed = 1;
         damage = 0;
         range = 5;
         dead = false;
@@ -47,7 +49,7 @@ public class Miner extends Unit
                 System.out.println(goldCarry);
             }
         }
-        if (this.isTouching(Player.class)){
+        if (this.isTouching(Nexus.class)){
             player.setGold(goldCarry);
             goldCarry = 0;
         }
