@@ -18,6 +18,7 @@ public class Player extends Actor
     private int barracksCount, factoryCount;
     private int decision;
     private int cooldown;
+    private int popMiner, popSoldier;
     private Boolean[] occupied = new Boolean[5];
     private Nexus nexus;
     /**
