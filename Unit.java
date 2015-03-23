@@ -154,8 +154,8 @@ public abstract class Unit extends Actor
     }
     
     public boolean shootRange(){
-        building = (Buildings)getOneObjectAtOffset(30, 0, Buildings.class);
-        building2 = (Buildings)getOneObjectAtOffset(-30, 0, Buildings.class);
+        building = (Buildings)getOneObjectAtOffset(10, 0, Buildings.class);
+        building2 = (Buildings)getOneObjectAtOffset(-10, 0, Buildings.class);
         if (building != null || building2 != null){
             speed = 0;
             return true;
