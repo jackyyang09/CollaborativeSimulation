@@ -11,6 +11,7 @@ public class Barracks extends Buildings
     public Barracks()
     {
         buildTime = 500;
+        health = 500;
     }
     
     /**
