@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Soldier is a sub-class of Unit
  * 
- * @author Kris Leung
+ * @author Kris Leung, Ryan Huang
  * @version Mar 2015
  */
 public class Miner extends Unit
@@ -50,7 +50,7 @@ public class Miner extends Unit
             }
         }
         if (this.isTouching(Nexus.class)){
-            player.setGold(goldCarry);
+            player.getGold(goldCarry);
             goldCarry = 0;
         }
     }    
