@@ -80,6 +80,22 @@ public class Player extends Actor
     {
         return gold;
     }
+    
+        /**
+     * returns current amount of soldiers of this player
+     */
+    public int getSoldiers()
+    {
+        return popSoldier;
+    }
+
+    /**
+     * returns current amount of miners of this player
+     */
+    public int getMiners()
+    {
+        return popMiner;
+    }
 
     /**
      * Buys a Barrack and places it on the appropriate area and decreases gold
