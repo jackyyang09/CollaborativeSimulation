@@ -26,6 +26,7 @@ public class Barracks extends Buildings
             buildTime--;
         }
         if (buildTime == 0){setImage("building1.png");}
+        regen();
     }
     
     /**
