@@ -9,20 +9,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Soldier extends Unit
 {
 
-    GoldMine gMine = new GoldMine();
-
     /**
-     * Constructor for soldier
+     * Prepare method for Soldier
      */
-    public Soldier(){
+    public void prepare(){
         currentHp = 100;
         maxHp = 100;
-        speed = 3;
-        damage = 5;
-        range = 5;
+        speed = 1;
+        startSpeed = 1;
+        range = 50;
         dead = false;
     }
 
+/**
+ * Targeting soldier method 
+ */
     public void target(boolean whichSide){
         if (currentHp > 0)
         {
