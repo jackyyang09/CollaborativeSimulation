@@ -10,6 +10,6 @@ public class Nexus extends Buildings
 {
     public void act()
     {
-        
+      regen();  
     }
 }
