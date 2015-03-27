@@ -8,8 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Soldier extends Unit
 {
-    // private int xValue = 0;
-    // private int yValue = 0;
+
     GoldMine gMine = new GoldMine();
 
     /**
@@ -24,14 +23,38 @@ public class Soldier extends Unit
         dead = false;
     }
 
-    /**
-     * Act - do whatever the Soldier wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act(){
-        pathFinding(gMine.getX(), gMine.getY());
-        if (getDead() == true){
+    public void target(boolean whichSide){
+        if (hp > 0)
+        {
+            //hp -= DesertWorld.BUG_DEATH_RATE;
+            if (whichSide == false) // Only run every 4 acts to avoid lag
+            {
+                targetClosestP1Soldier();
+                if (targetP1Soldier != null && targetP1Soldier.getWorld() != null)
+                {
+                    moveTowardOrAttackP1();
+                }
+                else
+                {
+                    moveRandomly();
+                }
+                //hpBar.update(hp);
+            }
+            else if(whichSide == true){
+                targetClosestP2Soldier();
+                if (targetP2Soldier != null && targetP2Soldier.getWorld() != null)
+                {
+                    moveTowardOrAttackP2();
+                }
+                else
+                {
+                    moveRandomly();
+                }
+            }
+        }
+        // Death:
+        else
+        {
             getWorld().removeObject(this);
         }
-    }    
-}
+    }
