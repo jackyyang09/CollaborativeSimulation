@@ -20,11 +20,8 @@ public class Barracks extends Buildings
      */
     public void act() 
     {
-        if (buildTime > 0)
-        {
-            setImage("construction1.png");
-            buildTime--;
-        }
+        if (buildTime == 750){getWorld().addObject(new Graphics(1), getX(), getY());}
+        if (buildTime > 0){buildTime--;}
         if (buildTime == 0){setImage("building1.png");}
         regen();
     }
