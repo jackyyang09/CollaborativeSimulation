@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Super class buildings, abstract
  * 
- * @Jacky Yang
+ * @Jacky Yang, and Kajamugesh Raneethran
  * @Day 2 WIP 
  */
 public abstract class Buildings extends Actor
@@ -18,7 +18,23 @@ public abstract class Buildings extends Actor
     {   
         return health;
     }
-    
+
+    /**
+     * Regenerates one health every 100 acts
+     */
+    public void regen()
+    {
+        int rate = 0;
+        if ((health + 1)<=maxHealth && rate == 100)
+        {
+            health++;
+        }
+        else if(health!=maxHealth)
+        {
+            rate++;
+        }
+    }
+
     /**
      * Returns private variable "maxHealth"
      */
@@ -26,7 +42,7 @@ public abstract class Buildings extends Actor
     {
         return maxHealth;
     }
-    
+
     /**
      * Sets the private variable "health" to the inputted value
      * @param newVal The new value for hp
