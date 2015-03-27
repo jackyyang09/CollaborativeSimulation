@@ -21,6 +21,7 @@ public class Player extends Actor
     private int popMiner, popSoldier;
     private Boolean[] occupied = new Boolean[5];
     private Nexus nexus;
+    private Map m;
     /**
      * Instantiates Player 
      */
@@ -55,9 +56,9 @@ public class Player extends Actor
     public void act() 
     {
         if (prepare == false){prepare();}
-        //         if (cooldown%5 == 0){gold++;}
-        //         cooldown--;
-        System.out.println(gold);
+        //if (cooldown%5 == 0){gold++;}
+        cooldown--;
+        //System.out.println(gold);
         if (buyCount < 4 && decision == 3){buyBuildings();}
         if (decision == 1 && gold >= 1000){buyBarracks();}
         if (decision == 2 && gold >= 1500){buyFactory();}
@@ -79,22 +80,6 @@ public class Player extends Actor
     public int getGold()
     {
         return gold;
-    }
-    
-        /**
-     * returns current amount of soldiers of this player
-     */
-    public int getSoldiers()
-    {
-        return popSoldier;
-    }
-
-    /**
-     * returns current amount of miners of this player
-     */
-    public int getMiners()
-    {
-        return popMiner;
     }
 
     /**
@@ -134,10 +119,20 @@ public class Player extends Actor
             decision = 3;
         }
     }
-
+        Player playerOne;
+        Player playerTwo;
     private void buyUnits()
     {
-       if(player==1){
+
+//         if (player == 1){
+//             getWorld().addObject(new Soldier(playerOne, true), 225, 320);
+//             cooldown = 2400;
+//         }
+//         if (player == 2){
+//             getWorld().addObject(new Soldier(playerTwo, false), 735, 320);
+//             cooldown = 3200;
+//         }
+        if(player==1){
             ((Map)getWorld()).spawnUnit(1, true);
             cooldown = 3000;
         }
