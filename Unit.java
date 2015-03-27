@@ -108,7 +108,7 @@ public abstract class Unit extends Actor
         if (this.getNeighbours (50, true, PlayerOneSoldier.class).size() > 0)
         {
             speed = 0;
-            targetP1Soldier.hitEnemy(damage);
+            targetP1Soldier.dealDamage(damage);
         }
         else
         {
@@ -127,7 +127,7 @@ public abstract class Unit extends Actor
         if (this.getNeighbours (50, true, PlayerTwoSoldier.class).size() > 0)
         {
             speed = 0;
-            targetP2Soldier.hitEnemy(damage);
+            targetP2Soldier.dealDamage(damage);
         }
         else
         {
