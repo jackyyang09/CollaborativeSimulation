@@ -137,15 +137,15 @@ public class Player extends Actor
 
     private void buyUnits()
     {
-        //         if (player == 1){
-        //             getWorld().addObject(new Soldier(), 200, 320);
-        //             cooldown = 2400;
-        //         }
-        //         if (player == 2){
-        //             getWorld().addObject(new Soldier(), 860, 320);
-        //             cooldown = 3200;
-        //         }
-        //         gold -= 200; 
+       if(player==1){
+            ((Map)getWorld()).spawnUnit(1, true);
+            cooldown = 3000;
+        }
+        if(player==2){
+            ((Map)getWorld()).spawnUnit(1, false);
+            cooldown = 3000;
+        }
+        gold -= 200; 
     }
 
     /**
