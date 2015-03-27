@@ -19,7 +19,7 @@ public class GoldMine extends Buildings
         amount = 3000;
         propertyOne = false; 
         propertyTwo = false;
-        regen = 2;
+        regen = 10;
     }
 
     /**
