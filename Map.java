@@ -15,7 +15,7 @@ public class Map extends World
     Nexus nexusTwo = new Nexus();
     Player playerOne = new Player(1);
     Player playerTwo = new Player(2);
-    
+
     /**
      * Constructor for objects of class Map.
      * 
@@ -25,12 +25,15 @@ public class Map extends World
         // Create a new world with  960x640 cells
         super(960, 640, 1);
         addObject(playerOne,0,0);
-        addObject(goldMineOne,580,320);
-        addObject(goldMineTwo,380,320);
+        addObject(playerTwo,0,0);
+        addObject(goldMineOne,480,520);
+        addObject(goldMineTwo,480,120);
         addObject(nexusOne,100,320);
         addObject(nexusTwo,860,320);
         spawnUnit(0, true);
         spawnUnit(0, false);
+        spawnUnit(1, true);
+        spawnUnit(1, false);
     }
 
     /**
@@ -64,7 +67,7 @@ public class Map extends World
         }
         return 0;
     }
-    
+
     /**
      * Static method that gets the distance between the x,y coordinates of two Actors
      * using Pythagorean Theorum.
@@ -81,7 +84,7 @@ public class Map extends World
         distance = Math.sqrt(Math.pow(xLength, 2) + Math.pow(yLength, 2));
         return (float)distance;
     }
-    
+
     /**
      * Method that spawns units in the world
      * @param code     0 if miner and soldier otherwise
