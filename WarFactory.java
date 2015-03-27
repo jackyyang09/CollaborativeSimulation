@@ -21,7 +21,7 @@ public class WarFactory extends Buildings
     {
         if (buildTime == 750){getWorld().addObject(new Graphics(1), getX(), getY());}
         if (buildTime > 0){buildTime--;}
-        if (buildTime == 0){setImage("building3.png");}
+        if (buildTime == 0){removeTouching(Graphics.class);}
         regen();
     }    
 }
