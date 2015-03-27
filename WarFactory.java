@@ -19,11 +19,8 @@ public class WarFactory extends Buildings
      */
     public void act() 
     {
-        if (buildTime > 0)
-        {
-            setImage("construction2.png");
-            buildTime--;
-        }
+        if (buildTime == 750){getWorld().addObject(new Graphics(1), getX(), getY());}
+        if (buildTime > 0){buildTime--;}
         if (buildTime == 0){setImage("building3.png");}
         regen();
     }    
