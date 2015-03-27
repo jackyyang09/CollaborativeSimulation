@@ -20,96 +20,77 @@ public abstract class Unit extends Actor
     protected int counter;
     Buildings building;
     Buildings building2;
-    private Unit targetUnit;
-    private ArrayList<Unit> unit;
     private Buildings targetBuildings;
     private ArrayList<Buildings> buildings;
     
-    /**
-     * Act - do whatever the Bug wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        counter++;
-        if (currentHp > 0)
-        {
-            if (counter == 5) // Only run every 5 acts to avoid lag
-            {
-                targetClosestUnit (this.side);
-                //hpBar.update(hp);
-            }
-            if (targetUnit != null && targetUnit.getWorld() != null)
-            {
-                moveTowardOrAttackUnit();
-            }
-            else
-            {
-                moveForward();
-            }
-        }
-        // Death:
-        else
-        {
-            Map m = (Map)getWorld();
-            getWorld().removeObject(this);
-        }
-    }  
     
+    
+    protected PlayerOneSoldier targetP1Soldier;
+    protected ArrayList<PlayerOneSoldier> p1Soldier;
+    protected PlayerTwoSoldier targetP2Soldier;
+    protected ArrayList<PlayerTwoSoldier> p2Soldier;
+
     /**
      * Private method, called by act(), that constantly checks for closer targets
      */
-    private void targetClosestUnit (boolean whichSide)
+    protected void targetClosestP1Soldier ()
     {
         double closestTargetDistance = 0;
         double distanceToActor;
-        int numUnit;
-        // Get a list of all Units in the World, cast it to ArrayList for easy management
-
-        numUnit = getWorld().getObjects(Unit.class).size();
-        // If any units are found
-        if (numUnit > 50)
-        {
-            unit = (ArrayList)getObjectsInRange(100, Unit.class);
-        }
-        else if (numUnit > 20)
-        {
-            unit = (ArrayList)getObjectsInRange(200, Unit.class);
-        }
-        else
-            unit = (ArrayList)getWorld().getObjects(Unit.class);
-
-        if (unit.size() > 0)
+        //int numSoldiers;
+        // Get a list of all Flowers in the World, cast it to ArrayList
+        // for easy management
+        p1Soldier = (ArrayList)getWorld().getObjects(PlayerOneSoldier.class);
+        if (p1Soldier.size() > 0)
         {
             // set the first one as my target
-            do{
-                int whichUnit = 0;
-                targetUnit = unit.get(whichUnit);
-                if (targetUnit.getSide() == this.side)
-                {
-                    whichUnit++;
-                }
-                else{
-                    break;
-                }
-            }
-            while(true);
+            targetP1Soldier = p1Soldier.get(0);
             // Use method to get distance to target. This will be used
             // to check if any other targets are closer
-            closestTargetDistance = Map.getDistance (this, targetUnit);
+            closestTargetDistance = Map.getDistance (this, targetP1Soldier);
 
             // Loop through the objects in the ArrayList to find the closest target
-            for (Unit o : unit)
+            for (PlayerOneSoldier o : p1Soldier)
             {
                 // Cast for use in generic method
                 Actor a = (Actor) o;
                 // Measure distance from me
                 distanceToActor = Map.getDistance(this, a);
-                // If I find a Unit closer than my current target, I will change
+                // If I find a Flower closer than my current target, I will change
                 // targets
                 if (distanceToActor < closestTargetDistance)
                 {
-                    targetUnit = o;
+                    targetP1Soldier = o;
+                    closestTargetDistance = distanceToActor;
+                }
+            }
+        }
+    }
+
+    protected void targetClosestP2Soldier(){
+        double closestTargetDistance = 0;
+        double distanceToActor;
+        p2Soldier = (ArrayList)getWorld().getObjects(PlayerTwoSoldier.class);
+        if (p2Soldier.size() > 0)
+        {
+            // set the first one as my target
+            targetP2Soldier = p2Soldier.get(0);
+            // Use method to get distance to target. This will be used
+            // to check if any other targets are closer
+            closestTargetDistance = Map.getDistance (this, targetP2Soldier);
+
+            // Loop through the objects in the ArrayList to find the closest target
+            for (PlayerTwoSoldier o : p2Soldier)
+            {
+                // Cast for use in generic method
+                Actor a = (Actor) o;
+                // Measure distance from me
+                distanceToActor = Map.getDistance(this, a);
+                // If I find a Flower closer than my current target, I will change
+                // targets
+                if (distanceToActor < closestTargetDistance)
+                {
+                    targetP2Soldier = o;
                     closestTargetDistance = distanceToActor;
                 }
             }
@@ -120,20 +101,37 @@ public abstract class Unit extends Actor
      * Private method, calle by act(), that moves toward the target,
      * or eats it if within range.
      */
-    private void moveTowardOrAttackUnit ()
+    protected void moveTowardOrAttackP1 ()
     {
-        turnTowards(targetUnit.getX(), targetUnit.getY());
+        turnTowards(targetP1Soldier.getX(), targetP1Soldier.getY());
 
-        if (this.getNeighbours (30, true, Unit.class).size() > 0)
+        if (this.getNeighbours (50, true, PlayerOneSoldier.class).size() > 0)
         {
-            // Deal damage to enemy unit
-            targetUnit.dealDamage(damage);
-
-            //attacking animation
+            speed = 0;
+            targetP1Soldier.hitEnemy(damage);
         }
         else
         {
-            move (speed);
+            move (startSpeed);
+        }
+    }
+
+    /**
+     * Private method, calle by act(), that moves toward the target,
+     * or eats it if within range.
+     */
+    protected void moveTowardOrAttackP2 ()
+    {
+        turnTowards(targetP2Soldier.getX(), targetP2Soldier.getY());
+
+        if (this.getNeighbours (50, true, PlayerTwoSoldier.class).size() > 0)
+        {
+            speed = 0;
+            targetP2Soldier.hitEnemy(damage);
+        }
+        else
+        {
+            move (startSpeed);
         }
     }
 
