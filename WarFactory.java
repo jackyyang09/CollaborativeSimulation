@@ -25,5 +25,6 @@ public class WarFactory extends Buildings
             buildTime--;
         }
         if (buildTime == 0){setImage("building3.png");}
+        regen();
     }    
 }
