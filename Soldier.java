@@ -57,3 +57,4 @@ public class Soldier extends Unit
             getWorld().removeObject(this);
         }
     }
+}
