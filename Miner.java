@@ -12,11 +12,11 @@ public class Miner extends Unit
     private int maxCarry = 100;
     GoldMine gMine;
     Nexus nexus;
-    Player player;
+    
     /**
      * Constructor for soldier
      */
-    public Miner(GoldMine g, Nexus n, Player p){
+    public Miner(GoldMine g, Nexus n, Player p, boolean whichSide){
         currentHp = 100;
         maxHp = 100;
         speed = 1;
@@ -27,6 +27,7 @@ public class Miner extends Unit
         gMine = g;
         nexus = n;
         player = p;
+        side = whichSide;
     }
 
     /**
@@ -34,19 +35,16 @@ public class Miner extends Unit
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act(){
-        if (getDead() == true){
-            getWorld().removeObject(this);
-        }
         if (goldCarry == maxCarry){
             pathFinding(nexus.getX(), nexus.getY());
             speed = startSpeed;
         }
         else{
             pathFinding(gMine.getX(), gMine.getY());
-            if(shootRange() == true){
+            if(goldMineTouching() == true){
+                speed = 0;
                 gMine.subAmount(1);
                 goldCarry += 1;
-                System.out.println(goldCarry);
             }
         }
         if (this.isTouching(Nexus.class)){
