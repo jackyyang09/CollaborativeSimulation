@@ -19,8 +19,8 @@ public class Miner extends Unit
     public Miner(GoldMine g, Nexus n, Player p, boolean whichSide){
         currentHp = 100;
         maxHp = 100;
-        speed = 1;
-        startSpeed = 1;
+        speed = 2;
+        startSpeed = 2;
         damage = 0;
         range = 5;
         dead = false;
