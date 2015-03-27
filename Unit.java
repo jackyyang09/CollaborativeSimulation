@@ -4,7 +4,7 @@ import java.util.ArrayList;
 /**
  * Unit is a unit.
  * 
- * @author Kris Leung, Ryan Huang, (some code cited from Mr.Cohen's bug example)
+ * @author Kris Leung, (some code cited from Mr.Cohen's bug example)
  * @version Mar 2015
  */
 public abstract class Unit extends Actor
@@ -13,7 +13,7 @@ public abstract class Unit extends Actor
     protected int maxHp; //max hp of the unit
     protected int speed; //speed of which unit moves
     protected int startSpeed;
-    protected int damage; //damage unit can deal
+    protected int damage = Greenfoot.getRandomNumber(5)+1; //damage unit can deal
     protected int range; //the range where the unit can attack other units
     protected boolean dead; //sees if unit is dead
     protected boolean side; //true if playerOne side and false if playerTwo side
@@ -23,8 +23,8 @@ public abstract class Unit extends Actor
     GoldMine goldMine2;
     Buildings building;
     Buildings building2;
-    private Buildings targetBuildings;
-    private ArrayList<Buildings> buildings;
+    protected Buildings targetBuildings;
+    protected ArrayList<Buildings> buildings; 
     protected PlayerOneSoldier targetP1Soldier;
     protected ArrayList<PlayerOneSoldier> p1Soldier;
     protected PlayerTwoSoldier targetP2Soldier;
@@ -137,23 +137,19 @@ public abstract class Unit extends Actor
 
     protected void moveForward ()
     {
-        if (this.side == true)
-        {
+            speed = startSpeed;
             move (speed);
-        }
-        else
-            move (-speed);
     }
-    
+
     protected void targetBuilding (boolean side){
 
     }
-    
+
     public void pathFinding(int x, int y){
         turnTowards(x, y);
         move(speed);
     }
-    
+
     public boolean goldMineTouching(){
         goldMine = (GoldMine)getOneObjectAtOffset(10, 0, GoldMine.class);
         goldMine2 = (GoldMine)getOneObjectAtOffset(-10, 0, GoldMine.class);
@@ -176,7 +172,7 @@ public abstract class Unit extends Actor
             return false;   
         }
     }
-    
+
     /**
      * Deal amount of damage to a unit
      * @param dmg      Damage dealt to the unit
@@ -191,5 +187,4 @@ public abstract class Unit extends Actor
             return false;
         }
     }
-}
 }
