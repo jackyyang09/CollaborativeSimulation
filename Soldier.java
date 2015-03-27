@@ -26,7 +26,6 @@ public class Soldier extends Unit
     public void target(boolean whichSide){
         if (hp > 0)
         {
-            //hp -= DesertWorld.BUG_DEATH_RATE;
             if (whichSide == false) // Only run every 4 acts to avoid lag
             {
                 targetClosestP1Soldier();
