@@ -18,13 +18,13 @@ public abstract class Unit extends Actor
     protected boolean dead; //sees if unit is dead
     protected boolean side; //true if playerOne side and false if playerTwo side
     protected int counter;
+    protected Player player;
+    GoldMine goldMine;
+    GoldMine goldMine2;
     Buildings building;
     Buildings building2;
     private Buildings targetBuildings;
     private ArrayList<Buildings> buildings;
-    
-    
-    
     protected PlayerOneSoldier targetP1Soldier;
     protected ArrayList<PlayerOneSoldier> p1Soldier;
     protected PlayerTwoSoldier targetP2Soldier;
@@ -145,13 +145,28 @@ public abstract class Unit extends Actor
             move (-speed);
     }
     
+    protected void targetBuilding (boolean side){
+
+    }
+    
     public void pathFinding(int x, int y){
         turnTowards(x, y);
         move(speed);
         shootRange();
     }
     
-    public boolean shootRange(){
+    public boolean goldMineTouching(){
+        goldMine = (GoldMine)getOneObjectAtOffset(10, 0, GoldMine.class);
+        goldMine2 = (GoldMine)getOneObjectAtOffset(-10, 0, GoldMine.class);
+        if (goldMine != null || goldMine2 != null){
+            return true;
+        }
+        else{
+            return false;   
+        }
+    }
+    
+    public boolean buildingTouching(){
         building = (Buildings)getOneObjectAtOffset(10, 0, Buildings.class);
         building2 = (Buildings)getOneObjectAtOffset(-10, 0, Buildings.class);
         if (building != null || building2 != null){
@@ -177,135 +192,3 @@ public abstract class Unit extends Actor
             return false;
         }
     }
-    
-    /**
-     * Sets unit's current Hp
-     * @param crtHp      Current Hp of the unit
-     * @return boolean   Returns true if value is changed and false otherwise
-     */
-    public boolean setCurrentHp (int crtHp){
-        if (crtHp >= 0){
-            currentHp = crtHp;
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    
-    /**
-     * Sets unit's max Hp
-     * @param mxHp      Max Hp of the unit
-     * @return boolean   Returns true if value is changed and false otherwise
-     */
-    public boolean setMaxHp (int mxHp){
-        if (mxHp >= 0){
-            maxHp = mxHp;
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    
-    /**
-     * Sets unit's speed
-     * @param spd      Speed of the unit
-     * @return boolean   Returns true if value is changed and false otherwise
-     */
-    public boolean setSpeed (int spd){
-        if (spd >= 0){
-            speed = spd;
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    
-    /**
-     * Sets unit's damage
-     * @param dmg Damage of the unit
-     * @return boolean Returns true if value is changed and false otherwise
-     */
-    public boolean setDamage (int dmg){
-        if (dmg >= 0){
-            damage = dmg;
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    
-    /**
-     * Sets unit's range
-     * @param rng Speed of the unit
-     * @return boolean Returns true if value is changed and false otherwise
-     */
-    public boolean setRange (int rng){
-        if (rng >= 0){
-            range = rng;
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    
-    /**
-     * Sets if the unit is dead or not
-     * @param hasDied Unit is dead or not
-     */
-    public void setDead (boolean hasDied){
-        dead = hasDied;
-    }
-    
-    /**
-     * Returns unit's current hp
-     * @return int Returns current hp of unit
-     */
-    public int getCurrentHp(){
-        return currentHp;
-    }
-    
-    /**
-     * Returns unit's max hp
-     * @return int Returns max hp of unit
-     */
-    public int getMaxHp(){
-        return maxHp;
-    }
-    
-        /**
-     * Returns unit's damage
-     * @return int Returns unit damage that it can deal
-     */
-    public int getDamage(){
-        return damage;
-    }
-    
-        /**
-     * Returns unit's range
-     * @return int Returns unit range of attack
-     */
-    public int getRange(){
-        return range;
-    }
-    
-    /**
-     * Returns if unit is dead or not
-     * @return boolean Returns true if unit is dead and false otherwise
-     */
-    public boolean getDead (){
-        return dead;
-    }
-    
-    /**
-     * Returns what side the unit is on
-     * @return boolean Returns true if unit is on playerOne side and false if playerTwo
-     */
-    public boolean getSide(){
-        return side;
-    }
-}
