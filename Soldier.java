@@ -24,7 +24,7 @@ public class Soldier extends Unit
     }
 
     public void target(boolean whichSide){
-        if (hp > 0)
+        if (currentHp > 0)
         {
             if (whichSide == false) // Only run every 4 acts to avoid lag
             {
