@@ -135,7 +135,7 @@ public abstract class Unit extends Actor
         }
     }
 
-    private void moveForward ()
+    protected void moveForward ()
     {
         if (this.side == true)
         {
