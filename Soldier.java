@@ -6,9 +6,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Kris Leung
  * @version Mar 2015
  */
-public class Soldier extends Unit
+public abstract class Soldier extends Unit
 {
-
     /**
      * Prepare method for Soldier
      */
@@ -21,9 +20,6 @@ public class Soldier extends Unit
         dead = false;
     }
 
-/**
- * Targeting soldier method 
- */
     public void target(boolean whichSide){
         if (currentHp > 0)
         {
@@ -57,5 +53,5 @@ public class Soldier extends Unit
         {
             getWorld().removeObject(this);
         }
+        }
     }
-}
