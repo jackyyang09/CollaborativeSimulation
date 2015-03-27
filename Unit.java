@@ -152,7 +152,6 @@ public abstract class Unit extends Actor
     public void pathFinding(int x, int y){
         turnTowards(x, y);
         move(speed);
-        shootRange();
     }
     
     public boolean goldMineTouching(){
