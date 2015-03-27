@@ -35,7 +35,7 @@ public class Soldier extends Unit
                 }
                 else
                 {
-                    moveRandomly();
+                    moveForward();
                 }
                 //hpBar.update(hp);
             }
@@ -47,7 +47,7 @@ public class Soldier extends Unit
                 }
                 else
                 {
-                    moveRandomly();
+                    moveForward();
                 }
             }
         }
