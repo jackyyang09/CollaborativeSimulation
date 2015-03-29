@@ -34,7 +34,7 @@ public abstract class Soldier extends Unit
                 {
                     moveForward();
                 }
-                //hpBar.update(hp);
+                healthBar.setCurrentHp(currentHp);
             }
             else if(whichSide == true){
                 targetClosestP2Soldier();
@@ -46,6 +46,7 @@ public abstract class Soldier extends Unit
                 {
                     moveForward();
                 }
+                healthBar.setCurrentHp(currentHp);
             }
         }
         // Death:
