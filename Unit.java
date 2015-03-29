@@ -29,7 +29,13 @@ public abstract class Unit extends Actor
     protected ArrayList<PlayerOneSoldier> p1Soldier;
     protected PlayerTwoSoldier targetP2Soldier;
     protected ArrayList<PlayerTwoSoldier> p2Soldier;
-
+    
+    protected HealthBar healthBar = new HealthBar(500, 500, 30, 5, this);
+    public void addedToWorld (World w)
+    {
+        getWorld().addObject (healthBar, getX(), getY());
+    }
+    
     /**
      * Private method, called by act(), that constantly checks for closer targets
      */
