@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Map here.
  * 
- * @author Ryan Huang
+ * @author Ryan Huang, Kris Leung, Kajamugesh Raneethran, Jacky Yang
  * @version Day 1
  */
 public class Map extends World
@@ -117,9 +117,11 @@ public class Map extends World
             if(side == true){
                 //true for player 1
                 addObject(new PlayerOneSoldier(), 225, 320);
+                playerOne.addSoldiers(1);
             }
             else{
                 addObject(new PlayerTwoSoldier(), 735, 320);
+                playerTwo.addSoldiers(1);
             }   
         }
     }
