@@ -52,6 +52,12 @@ public abstract class Soldier extends Unit
         // Death:
         else
         {
+            if(whichSide == true){
+                ((Map)getWorld()).playerTwo.addSoldiers(-1);
+            }
+            else if(whichSide == false){
+                ((Map)getWorld()).playerOne.addSoldiers(-1);
+            }
             getWorld().removeObject(this);
         }
         }
