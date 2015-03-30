@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Manager class
  * 
- * @author Jacky Yang, Ryan Huang
+ * @author Jacky Yang, Ryan Huang, Kajamugesh Raneethran
  * @version Day X WIP
  */
 public class Player extends Actor
@@ -18,7 +18,8 @@ public class Player extends Actor
     private int barracksCount, factoryCount;
     private int decision;
     private int cooldown;
-    private int popMiner, popSoldier;
+    private int popSoldier = 0;
+    private int popMiner = 0;
     private Boolean[] occupied = new Boolean[5];
     private Nexus nexus;
     private Map m;
@@ -73,6 +74,15 @@ public class Player extends Actor
     {
         gold += amtgold;
     }
+    
+    /**
+     * adds a the given amount of soldiers to current population
+     * @param soldiers amount of soldiers to be added
+     */
+    public void addSoldier(int soldiers)
+    {
+        popSoldier += soldiers;
+    }
 
     /**
      * returns current amount of gold
@@ -80,6 +90,22 @@ public class Player extends Actor
     public int getGold()
     {
         return gold;
+    }
+    
+    /**
+     * returns current amount of soldiers of this player
+     */
+    public int getSoldiers()
+    {
+        return popSoldier;
+    }
+
+    /**
+     * returns current amount of miners of this player
+     */
+    public int getMiners()
+    {
+        return popMiner;
     }
 
     /**
