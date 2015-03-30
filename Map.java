@@ -15,6 +15,7 @@ public class Map extends World
     Nexus nexusTwo = new Nexus();
     Player playerOne = new Player(1);
     Player playerTwo = new Player(2);
+    ScoreBar score = new ScoreBar();
 
     /**
      * Constructor for objects of class Map.
@@ -30,6 +31,7 @@ public class Map extends World
         addObject(goldMineTwo,480,120);
         addObject(nexusOne,100,320);
         addObject(nexusTwo,860,320);
+        addObject(score, 480,15);
         spawnUnit(0, true);
         spawnUnit(0, false);
         spawnUnit(1, true);
@@ -39,6 +41,7 @@ public class Map extends World
  /**
      * Act - do whatever the Soldier wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
+     * also prevents score bar from bing overlapped as a side effect
      */
     public void act(){
         removeObject(score);
