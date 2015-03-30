@@ -35,7 +35,17 @@ public class Map extends World
         spawnUnit(1, true);
         spawnUnit(1, false);
     }
-
+    
+ /**
+     * Act - do whatever the Soldier wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act(){
+        removeObject(score);
+        addObject(score, 480,15);// added here so building doesn't block stats
+        score.update(playerOne.getSoldiers(), playerTwo.getSoldiers(), playerOne.getGold(), playerTwo.getGold());
+    }    
+    
     /**
      * enter a number to spawn in a certian building at a specfic location
      * <p>
