@@ -16,7 +16,8 @@ public class Map extends World
     Player playerOne = new Player(1);
     Player playerTwo = new Player(2);
     ScoreBar score = new ScoreBar();
-
+    boolean toggle = true;// removes score bar if false
+    int lag =10;// prevents flashing by having a 10 act wait
     /**
      * Constructor for objects of class Map.
      * 
@@ -44,10 +45,21 @@ public class Map extends World
      * also prevents score bar from bing overlapped as a side effect
      */
     public void act(){
+        if(Greenfoot.isKeyDown("space") && toggle == true && lag>= 30){
+            toggle = false;
+            lag = 0;
+        }
+        else if(Greenfoot.isKeyDown("space") && toggle == false && lag >= 30){
+            toggle = true;
+            lag = 0;
+        }
         removeObject(score);
-        addObject(score, 480,15);// added here so building doesn't block stats
-        score.update(playerOne.getSoldiers(), playerTwo.getSoldiers(), playerOne.getGold(), playerTwo.getGold());
-    }    
+        if(toggle == true){
+            addObject(score, 480,15);// added here so building doesn't block stats
+            score.update(playerOne.getSoldiers(), playerTwo.getSoldiers(), playerOne.getGold(), playerTwo.getGold());
+        }
+        lag ++;
+        }    
     
     /**
      * enter a number to spawn in a certian building at a specfic location
