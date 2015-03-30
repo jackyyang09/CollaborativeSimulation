@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public abstract class Soldier extends Unit
 {
+    protected int animTimer;
     /**
      * Prepare method for Soldier
      */
