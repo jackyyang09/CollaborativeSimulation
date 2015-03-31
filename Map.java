@@ -39,27 +39,28 @@ public class Map extends World
         spawnUnit(1, false);
     }
 
-    /**
-     * Act - do whatever the Soldier wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     * also prevents score bar from bing overlapped as a side effect
+     /**
+     * 
      */
     public void act(){
-        if(Greenfoot.isKeyDown("space") && toggle == true && lag>= 30){
-            toggle = false;
-            lag = 0;
-        }
-        else if(Greenfoot.isKeyDown("space") && toggle == false && lag >= 30){
+        toggleStats();
+    }
+
+    /**
+     * prevents score bar from bing overlapped as a side effect
+     */
+    private void toggleStats()
+    { 
+        if (!toggle && Greenfoot.isKeyDown("space") && !("space".equals(Greenfoot.getKey()))){
+            removeObject(score);
             toggle = true;
-            lag = 0;
         }
-        removeObject(score);
-        if(toggle == true){
+        if (toggle && !Greenfoot.isKeyDown("space") && ("space".equals(Greenfoot.getKey()))){
             addObject(score, 480,15);// added here so building doesn't block stats
             score.update(playerOne.getSoldiers(), playerTwo.getSoldiers(), playerOne.getGold(), playerTwo.getGold());
+            toggle = false;
         }
-        lag ++;
-    }    
+    }
 
     /**
      * enter a number to spawn in a certian building at a specfic location
