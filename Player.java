@@ -21,6 +21,7 @@ public class Player extends Actor
     private int popSoldier = 0;
     private int popMiner = 0;
     private Boolean[] occupied = new Boolean[5];
+    private Boolean panic = false;
     private Nexus nexus;
     private Map m;
     /**
@@ -33,8 +34,8 @@ public class Player extends Actor
         buyCount = 0;
         buildPerc = 0;
         decision = 3;
-        if (player == 1){cooldown = 2400;}
-        if (player == 2){cooldown = 3200;}
+        if (player == 1){cooldown = 1200;}
+        if (player == 2){cooldown = 1600;}
     }
 
     /**
