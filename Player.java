@@ -29,7 +29,7 @@ public class Player extends Actor
     public Player(int AI)
     {
         player = AI;
-        nexus = new Nexus();
+        nexus = new Nexus(player);
         buyCount = 0;
         buildPerc = 0;
         decision = 3;
@@ -115,8 +115,8 @@ public class Player extends Actor
             space = Greenfoot.getRandomNumber(5);
         }while(occupied[space] == true);
         if (occupied[space] == false){
-            if (player == 1){getWorld().addObject(new Barracks(), 100, slot(space));}
-            if (player == 2){getWorld().addObject(new Barracks(), 860, slot(space));}
+            if (player == 1){getWorld().addObject(new Barracks(1), 100, slot(space));}
+            if (player == 2){getWorld().addObject(new Barracks(2), 860, slot(space));}
             occupied[space] = true;
             buyCount++;
             barracksCount++;
@@ -134,8 +134,8 @@ public class Player extends Actor
             space = Greenfoot.getRandomNumber(5);
         }while(occupied[space] == true);
         if (occupied[space] == false){
-            if (player == 1){getWorld().addObject(new WarFactory(), 100, slot(space));}
-            if (player == 2){getWorld().addObject(new WarFactory(), 860, slot(space));}
+            if (player == 1){getWorld().addObject(new WarFactory(1), 100, slot(space));}
+            if (player == 2){getWorld().addObject(new WarFactory(2), 860, slot(space));}
             occupied[space] = true;
             buyCount++;
             factoryCount++;
