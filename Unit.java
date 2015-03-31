@@ -13,7 +13,7 @@ public abstract class Unit extends Actor
     protected int maxHp; //max hp of the unit
     protected int speed; //speed of which unit moves
     protected int startSpeed;
-    protected int damage = Greenfoot.getRandomNumber(3)+1; //damage unit can deal
+    protected int damage; //damage unit can deal
     protected int range; //the range where the unit can attack other units
     protected boolean dead; //sees if unit is dead
     protected boolean side; //true if playerOne side and false if playerTwo side
@@ -114,7 +114,7 @@ public abstract class Unit extends Actor
         {
             speed = 0;
             //getWorld().addObject(new Bullet(targetP1Soldier, false), getX(), getY());
-            targetP1Unit.dealDamage(damage);
+            targetP1Unit.dealDamage(getDamage());
         }
         else
         {
@@ -134,7 +134,7 @@ public abstract class Unit extends Actor
         {
             speed = 0;
             //getWorld().addObject(new Bullet(targetP2Soldier, true), getX(), getY());
-            targetP2Unit.dealDamage(damage);
+            targetP2Unit.dealDamage(getDamage());
         }
         else
         {
@@ -224,7 +224,7 @@ public abstract class Unit extends Actor
     }
     
     public int getDamage (){
-        return damage;
+        return Greenfoot.getRandomNumber(3)+1;
     }
     
     public GoldMine getGoldMine(){
