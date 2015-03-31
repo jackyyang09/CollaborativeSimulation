@@ -62,7 +62,7 @@ public class GoldMine extends Buildings
         if (amount <= 0){
             return false;
         } else {
-            amount -= amt;
+            this.amount -= amount;
             return true;
         }
     }
