@@ -8,15 +8,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Miner extends Unit
 {
-    private int goldCarry = 0;
-    private int maxCarry = 100;
-    GoldMine gMine;
-    Nexus nexus;
+    protected int goldCarry = 0;
+    protected int maxCarry = 100;
+    protected GoldMine gMine;
+    protected GoldMine gMine1;
+    protected GoldMine gMine2;
+    protected Nexus nexus;
+    protected wentOnce = true;
     
     /**
-     * Constructor for soldier
+     * Preparation for Miner
      */
-    public Miner(GoldMine g, Nexus n, Player p, boolean whichSide){
+    public void prepare (){
         currentHp = 100;
         maxHp = 100;
         speed = 2;
@@ -24,32 +27,37 @@ public class Miner extends Unit
         damage = 0;
         range = 5;
         dead = false;
-        gMine = g;
-        nexus = n;
-        player = p;
-        side = whichSide;
     }
 
     /**
      * Act - do whatever the Soldier wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act(){
-        if (goldCarry == maxCarry){
-            pathFinding(nexus.getX(), nexus.getY());
-            speed = startSpeed;
-        }
-        else{
-            pathFinding(gMine.getX(), gMine.getY());
-            if(goldMineTouching() == true){
-                speed = 0;
-                gMine.subAmount(1);
-                goldCarry += 1;
+    public void target(GoldMine g, boolean whichSide){
+        if (currentHp > 0)
+        {
+            if (goldCarry == maxCarry){
+                pathFinding(nexus.getX(), nexus.getY());
+                speed = startSpeed;
+            }
+            else{
+                pathFinding(gMine.getX(), gMine.getY());
+                if(goldMineTouching() == true){
+                    speed = 0;
+                    gMine.subAmount(1);
+                    goldCarry += 1;
+                    wentOnce = true;
+                }
+            }
+            if (this.isTouching(Nexus.class)){
+                player.addGold(goldCarry);
+                goldCarry = 0;
             }
         }
-        if (this.isTouching(Nexus.class)){
-            player.addGold(goldCarry);
-            goldCarry = 0;
+        // Death:
+        else
+        {
+            getWorld().removeObject(this);
         }
     }    
 }
