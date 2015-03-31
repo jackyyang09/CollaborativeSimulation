@@ -13,7 +13,7 @@ import java.awt.Color;
 public class HealthBar extends Actor
 {
     private GreenfootImage hpBar; // health bar
-    private int offset = -20; // offset of health bar if following another object
+    private int offset = -30; // offset of health bar if following another object
     private Actor owner; // object to follow
     private boolean following = false; // toggles between stand alone health bar or following health bar
     // health bar visual vars
