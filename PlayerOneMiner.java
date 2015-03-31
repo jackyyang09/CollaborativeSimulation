@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class PlayerOneMiner here.
  * 
- * @author Kris Leung
- * @version March 2015
+ * @author (your name) 
+ * @version (a version number or a date)
  */
 public class PlayerOneMiner extends Miner
 {
@@ -19,6 +19,9 @@ public class PlayerOneMiner extends Miner
 
     public void act(){
         target(getGoldMine(), true);
+        if (goldCarry == 0){setImage("miner0.png");}
+        if (goldCarry == 50){setImage("miner1.png");}
+        if (goldCarry == 100){setImage("miner2.png");}
     }
 
     public GoldMine getGoldMine(){
