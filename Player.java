@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Class that manages and makes decisions for the two teams
  * 
  * @author Jacky Yang, Ryan Huang, Kajamugesh Raneethran
- * @version Day X WIP
+ * @version Final
  */
 public class Player extends Actor
 {
