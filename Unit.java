@@ -322,7 +322,9 @@ public abstract class Unit extends Actor
                 else
                 {
                     //moveForward();
-                    moveTowardOrAttackNexus();
+                    if (nexus != null && nexus.getWorld() != null){
+                        moveTowardOrAttackNexus();
+                    }
                 }
                 healthBar.setCurrentHp(currentHp);
             }
@@ -338,7 +340,9 @@ public abstract class Unit extends Actor
                 else
                 {
                     //moveForward();
-                    moveTowardOrAttackNexus();
+                    if (nexus != null && nexus.getWorld() != null){
+                        moveTowardOrAttackNexus();
+                    }
                 }
                 healthBar.setCurrentHp(currentHp);
             }
