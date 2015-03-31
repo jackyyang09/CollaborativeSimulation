@@ -36,7 +36,8 @@ public abstract class Unit extends Actor
     
     public void addedToWorld (World w)
     {
-        getWorld().addObject (healthBar, getX(), getY());
+        getWorld().addObject (healthBarSoldier, getX(), getY());
+        getWorld().addObject (healthBarMiner, getX(), getY());
     }
     
     /**
@@ -264,8 +265,8 @@ public abstract class Unit extends Actor
      * Prepare the Miner
      */
     public void prepareMiner(){
-        currentHp = 500;
-        maxHp = 500;
+        currentHp = 3000;
+        maxHp = 3000;
         speed = 1;
         startSpeed = 1;
         damage = 0;
@@ -335,7 +336,7 @@ public abstract class Unit extends Actor
                     //moveForward();
                     moveTowardOrAttackNexus();
                 }
-                healthBar.setCurrentHp(currentHp);
+                healthBarSoldier.setCurrentHp(currentHp);
             }
             else if(whichSide == true){
                 targetClosestP2Unit();
@@ -351,7 +352,7 @@ public abstract class Unit extends Actor
                     //moveForward();
                     moveTowardOrAttackNexus();
                 }
-                healthBar.setCurrentHp(currentHp);
+                healthBarSoldier.setCurrentHp(currentHp);
             }
         }
         // Death:
