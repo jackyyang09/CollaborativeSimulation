@@ -6,15 +6,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Jacky Yang
  * @version (a version number or a date)
  */
-public class PlayerTwoSoldier extends Soldier
+public class PlayerTwoSoldier extends PlayerTwo
 {
-    public PlayerTwoSoldier(){
+    public PlayerTwoSoldier(Nexus n){
         prepare();
         side = false;
+        nexus = n;
     }
     
     public void act(){
         target(false);
+        if(speed != 0){
+            animate();
+        }
     }
     
     public void animate()
