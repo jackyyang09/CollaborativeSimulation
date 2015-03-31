@@ -23,6 +23,12 @@ public class Nexus extends Buildings
 
     public void act()
     {   
+        if(health > 0){
+            healthBar.setCurrentHp(health);
+        }
+        else{
+            getWorld().removeObject(this);
+        }
         if (graphic == 1){setImage("golding2.png");}
         regen();  
     }
