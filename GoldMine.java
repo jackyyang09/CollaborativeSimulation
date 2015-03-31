@@ -57,21 +57,12 @@ public class GoldMine extends Buildings
      * doesn't allow negative  current amounts or past max amount
      * @param amount     amount taken
      */
-    public boolean subAmount(int amount)
+    public boolean subAmount(int amt)
     {
-        int request = amount - this.amount;
-        if (request < 0)
-        {
+        if (amount <= 0){
             return false;
-        }
-        else if (request > maxAmount)
-        {
-            amount = maxAmount;
-            return true;
-        }
-        else
-        {
-            amount = request;
+        } else {
+            amount -= amt;
             return true;
         }
     }
