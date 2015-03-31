@@ -12,6 +12,12 @@ public class Graphics extends Actor
     private int animTimer;
     private boolean prepare;
     private int animType;
+    
+    /**
+ * Operates static images and miscellaneous animation on screen
+ * 
+ * @param val 1 for construction animation
+ */
     public Graphics(int val)
     {
         type = val;
