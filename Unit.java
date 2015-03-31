@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Unit is a unit.
+ * Unit is a unit. Test
  * 
  * @author Kris Leung, (some code cited from Mr.Cohen's bug example)
  * @version Mar 2015
