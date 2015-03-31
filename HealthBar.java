@@ -97,7 +97,8 @@ public class HealthBar extends Actor
      * @param MaxHp Max Health of the Health Bar's owner
      * @param target The owner of this Health Bar
      */
-    public HealthBar (int CurrentHp, int MaxHp, int HpBarWidth, int HpBarHeight, Actor target){
+    public HealthBar (int CurrentHp, int MaxHp, int dangerValue, int HpBarWidth, int HpBarHeight, Actor target){
+        this.dangerValue = dangerValue;
         hpBarWidth = HpBarWidth;
         hpBarHeight = HpBarHeight;
         hpBar = new GreenfootImage(hpBarWidth, hpBarHeight); //makes a new Health Bar
