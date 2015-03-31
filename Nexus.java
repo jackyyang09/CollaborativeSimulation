@@ -8,8 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Nexus extends Buildings
 {
-    public void act()
+    public Nexus(int player)
     {
-      regen();  
+        graphic = player;
+    }
+
+    public void act()
+    {   
+        if (graphic == 1){setImage("golding2.png");}
+        regen();  
     }
 }
