@@ -29,7 +29,7 @@ public abstract class Unit extends Actor
     protected PlayerTwo targetP2Unit;
     protected ArrayList<PlayerTwo> p2Unit;
 
-    protected HealthBar healthBar = new HealthBar(500, 500, 30, 5, this);
+    protected HealthBar healthBar = new HealthBar(500, 500, 100, 30, 5, this);
     public void addedToWorld (World w)
     {
         getWorld().addObject (healthBar, getX(), getY());
