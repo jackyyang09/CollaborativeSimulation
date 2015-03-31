@@ -32,6 +32,9 @@ public class Miner extends Unit
     /**
      * Act - do whatever the Soldier wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
+     * 
+     * @param g which goldmine, miner will target
+     * @param whichSide choose the side that the miner is on, false player one, true player two
      */
     public void target(GoldMine g, boolean whichSide){
         if (currentHp > 0)
