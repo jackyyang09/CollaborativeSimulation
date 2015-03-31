@@ -11,8 +11,8 @@ public class Map extends World
     private int location; // location of buildings
     GoldMine goldMineOne = new GoldMine();
     GoldMine goldMineTwo = new GoldMine();
-    Nexus nexusOne = new Nexus();
-    Nexus nexusTwo = new Nexus();
+    Nexus nexusOne = new Nexus(1);
+    Nexus nexusTwo = new Nexus(2);
     Player playerOne = new Player(1);
     Player playerTwo = new Player(2);
     ScoreBar score = new ScoreBar();
@@ -38,8 +38,8 @@ public class Map extends World
         spawnUnit(1, true);
         spawnUnit(1, false);
     }
-    
- /**
+
+    /**
      * Act - do whatever the Soldier wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      * also prevents score bar from bing overlapped as a side effect
@@ -59,8 +59,8 @@ public class Map extends World
             score.update(playerOne.getSoldiers(), playerTwo.getSoldiers(), playerOne.getGold(), playerTwo.getGold());
         }
         lag ++;
-        }    
-    
+    }    
+
     /**
      * enter a number to spawn in a certian building at a specfic location
      * <p>
@@ -119,10 +119,10 @@ public class Map extends World
         if(code == 0){
             if(side == true){
                 //true for player 1
-                addObject(new Miner(goldMineOne, goldMineTwo, nexusOne, playerOne, true), 225, 320);
+                addObject(new PlayerOneMiner(goldMineOne, goldMineTwo, nexusOne, playerOne), 225, 320);
             }
             else{
-                addObject(new Miner(goldMineOne, goldMineTwo, nexusTwo, playerTwo, false), 735, 320);
+                addObject(new PlayerTwoMiner(goldMineOne, goldMineTwo, nexusTwo, playerTwo), 735, 320);
             }
         }
         else if(code == 1){
