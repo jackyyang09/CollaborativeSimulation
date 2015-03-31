@@ -150,7 +150,6 @@ public class Player extends Actor
     private void buyUnits()
     {
         if(Greenfoot.getRandomNumber(2) == 0){
-            gold -= 200; 
             if(player==1){
                 ((Map)getWorld()).spawnUnit(1, true);
                 if (panic == false){cooldown = 2000;}
@@ -161,10 +160,10 @@ public class Player extends Actor
                 if (panic == false){cooldown = 2000;}
                 else{cooldown = 1200;}
             }
+            gold -= 200;
         }
         else{
             if (gold >= 500){
-                gold -= 500;
                 if (factoryCount > 0){
                     if(player==1){
                         ((Map)getWorld()).spawnUnit(0, true);
@@ -174,6 +173,7 @@ public class Player extends Actor
                         ((Map)getWorld()).spawnUnit(0, false);
                         cooldown = 2000;
                     }
+                    gold -= 500;
                 }
             }
         }
