@@ -59,19 +59,10 @@ public class GoldMine extends Buildings
      */
     public boolean subAmount(int amount)
     {
-        int request = amount - this.amount;
-        if (request < 0)
-        {
+        if (amount <= 0){
             return false;
-        }
-        else if (request > maxAmount)
-        {
-            amount = maxAmount;
-            return true;
-        }
-        else
-        {
-            amount = request;
+        } else {
+            amount -= amt;
             return true;
         }
     }
