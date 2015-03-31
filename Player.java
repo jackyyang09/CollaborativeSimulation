@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Class that manages and makes decisions for the two teams
+ * Manager class
  * 
  * @author Jacky Yang, Ryan Huang, Kajamugesh Raneethran
- * @version Final
+ * @version Day X WIP
  */
 public class Player extends Actor
 {
@@ -25,8 +25,6 @@ public class Player extends Actor
     private Map m;
     /**
      * Instantiates Player 
-     * 
-     * @param AI An integer value of either 1 or 2, decides which side to make decisions for
      */
     public Player(int AI)
     {
@@ -40,7 +38,7 @@ public class Player extends Actor
     }
 
     /**
-     * Prepares some values that will be used later
+     * Prepare things
      */
     private void prepare()
     {
@@ -53,7 +51,8 @@ public class Player extends Actor
     }
 
     /**
-     * Runs every act, performs various functions including deciding when to buy things
+     * Act - do whatever the Player wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
@@ -66,33 +65,33 @@ public class Player extends Actor
     }
 
     /**
-     * Adds a the given amount of gold to current gold
+     * adds a the given amount of gold to current gold
      * @param amtgold amount of gold to be added
      */
     public void addGold(int amtgold)
     {
         gold += amtgold;
     }
-    
+
     /**
-     * Adds a the given amount of soldiers to current population
+     * adds a the given amount of soldiers to current population
      * @param soldiers amount of soldiers to be added
      */
-    public void addSoldier(int soldiers)
+    public void addSoldiers(int soldiers)
     {
         popSoldier += soldiers;
     }
 
     /**
-     * Returns current amount of gold
+     * returns current amount of gold
      */
     public int getGold()
     {
         return gold;
     }
-    
+
     /**
-     * Returns current amount of soldiers of this player
+     * returns current amount of soldiers of this player
      */
     public int getSoldiers()
     {
@@ -100,7 +99,7 @@ public class Player extends Actor
     }
 
     /**
-     * Returns current amount of miners of this player
+     * returns current amount of miners of this player
      */
     public int getMiners()
     {
@@ -144,11 +143,10 @@ public class Player extends Actor
             decision = 3;
         }
     }
-        Player playerOne;
-        Player playerTwo;
+
     private void buyUnits()
     {
-    if(Greenfoot.getRandomNumber(2) == 0){
+        if(Greenfoot.getRandomNumber(2) == 0){
             if(player==1){
                 ((Map)getWorld()).spawnUnit(1, true);
                 cooldown = 3000;
@@ -159,13 +157,15 @@ public class Player extends Actor
             }
         }
         else{
-            if(player==1){
-                ((Map)getWorld()).spawnUnit(0, true);
-                cooldown = 3000;
-            }
-            if(player==2){
-                ((Map)getWorld()).spawnUnit(0, false);
-                cooldown = 3000;
+            if (factoryCount > 0){
+                if(player==1){
+                    ((Map)getWorld()).spawnUnit(0, true);
+                    cooldown = 3000;
+                }
+                if(player==2){
+                    ((Map)getWorld()).spawnUnit(0, false);
+                    cooldown = 3000;
+                }
             }
         }
         gold -= 200; 
@@ -195,7 +195,7 @@ public class Player extends Actor
     }
 
     /**
-     * Sets the location of a building
+     * sets the location of a building
      * @param loc is the slot number; 0 is slot 1 and so on
      */
     private int slot(int loc)
