@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Nexus extends Buildings
 {
-    private HealthBar healthBar = new HealthBar(50000, 50000, 10000, -75, 30, 5, this);
+    private HealthBar healthBar = new HealthBar(50000, 50000, 10000, 0, 50, 15, this);
     public void addedToWorld (World w)
     {
         getWorld().addObject (healthBar, getX(), getY());
