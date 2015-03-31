@@ -254,8 +254,8 @@ public abstract class Unit extends Actor
     public void prepareMiner(){
         currentHp = 500;
         maxHp = 500;
-        speed = 1;
-        startSpeed = 1;
+        speed = 2;
+        startSpeed = 2;
         damage = 0;
         range = 5;
         dead = false;
