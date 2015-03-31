@@ -273,13 +273,15 @@ public abstract class Unit extends Actor
                 speed = startSpeed;
             }
             else{
-                pathFinding(gMine.getX(), gMine.getY());
                 if(goldMineTouching() == true){
                     speed = 0;
                     if(gMine.subAmount(1)){
                         goldCarry += 1;
                     }
                     wentOnce = true;
+                }
+                else{
+                    pathFinding(gMine.getX(), gMine.getY());
                 }
             }
             if (this.isTouching(Nexus.class)){
