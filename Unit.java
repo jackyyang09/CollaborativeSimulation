@@ -4,7 +4,7 @@ import java.util.ArrayList;
 /**
  * Unit is a unit.
  * 
- * @author Kris Leung, (some code cited from Mr.Cohen's bug example)
+ * @author Kris Leung, (some code cited from Mr.Cohen's bug example), Kajamugesh Raneethran(just mutators)
  * @version Mar 2015
  */
 public abstract class Unit extends Actor
@@ -192,5 +192,45 @@ public abstract class Unit extends Actor
         else{
             return false;
         }
+    }
+    
+    /**
+     * Changes the amount of maximum hit poionts
+     * @param raise the amount maxhp will be
+     */
+    public void int maxHP (int raise)
+    {
+        maxHp = raise;
+    }
+    
+        /**
+     * Changes the amount of current hit poionts
+     * @param raise the amount hp will be increased
+     */
+    public void int heal (int raise)
+    {
+        currentHp += raise;
+        if (currentHp > maxHp)
+        {
+          currentHp = maxHp;  
+        }
+    }
+    
+         /**
+     * Changes which player the unit belongs to
+     * @param choice false if player one, true if player two
+     */
+    public void boolean betrayal (boolean choice)
+    {
+        side = choice;
+    }
+    
+         /**
+     * Changes which player the unit belongs to
+     * @param choice false if player one, true if player two
+     */
+    public void int fast (int velocity)
+    {
+        speed = velocity;
     }
 }
