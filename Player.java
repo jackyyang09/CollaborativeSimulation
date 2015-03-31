@@ -144,31 +144,32 @@ public class Player extends Actor
         }
     }
 
-    private void buyUnits()
+private void buyUnits()
     {
         if(Greenfoot.getRandomNumber(2) == 0){
+            gold -= 200; 
             if(player==1){
                 ((Map)getWorld()).spawnUnit(1, true);
-                cooldown = 3000;
+                cooldown = 1200;
             }
             if(player==2){
                 ((Map)getWorld()).spawnUnit(1, false);
-                cooldown = 3000;
+                cooldown = 1600;
             }
         }
         else{
+            gold -= 500;
             if (factoryCount > 0){
                 if(player==1){
                     ((Map)getWorld()).spawnUnit(0, true);
-                    cooldown = 3000;
+                    cooldown = 1200;
                 }
                 if(player==2){
                     ((Map)getWorld()).spawnUnit(0, false);
-                    cooldown = 3000;
+                    cooldown = 1600;
                 }
             }
         }
-        gold -= 200; 
     }
 
     /**
