@@ -18,7 +18,7 @@ public class PlayerOneMiner extends PlayerOne
     }
 
     public void act(){
-        target(getGoldMine(), true);
+        targetGoldMine(getGoldMine(), true);
         healthBarMiner.setCurrentHp(currentHp);
         if (goldCarry == 0){setImage("miner0.png");}
         if (goldCarry == 50){setImage("miner1.png");}
