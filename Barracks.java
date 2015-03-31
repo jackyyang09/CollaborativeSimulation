@@ -8,6 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Barracks extends Buildings
 {
+    
+   /**
+ * Does what a Barracks does
+ * Chooses which side 
+ * 
+ * @param player 1 if player one, 2 if player two
+ */ 
     public Barracks(int player)
     {
         graphic = player;
