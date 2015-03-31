@@ -8,8 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class WarFactory extends Buildings
 {
-    public WarFactory()
+    public WarFactory(int player)
     {
+        graphic = player;
         buildTime = 750;
     }
     
@@ -19,7 +20,11 @@ public class WarFactory extends Buildings
      */
     public void act() 
     {
-        if (buildTime == 750){getWorld().addObject(new Graphics(1), getX(), getY());}
+        if (buildTime == 750)
+        {
+            if (graphic == 1){setImage("golding3.png");}
+            getWorld().addObject(new Graphics(1), getX(), getY());
+        }
         if (buildTime > 0){buildTime--;}
         if (buildTime == 0){removeTouching(Graphics.class);}
         regen();
