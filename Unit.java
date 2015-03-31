@@ -118,7 +118,7 @@ public abstract class Unit extends Actor
         }
         else
         {
-            move (startSpeed);
+            moveForward();
         }
     }
 
@@ -138,11 +138,11 @@ public abstract class Unit extends Actor
         }
         else
         {
-            move (startSpeed);
+            moveForward();
         }
     }
 
-    protected void moveForward ()
+    protected void moveForward()
     {
         speed = startSpeed;
         move (speed);
@@ -198,10 +198,9 @@ public abstract class Unit extends Actor
     }
 
     public boolean buildingTouching(){
-        building = (Buildings)getOneObjectAtOffset(10, 0, Buildings.class);
-        building2 = (Buildings)getOneObjectAtOffset(-10, 0, Buildings.class);
+        building = (Buildings)getOneObjectAtOffset(20, 0, Buildings.class);
+        building2 = (Buildings)getOneObjectAtOffset(-20, 0, Buildings.class);
         if (building != null || building2 != null){
-            speed = 0;
             return true;
         }
         else{
@@ -277,8 +276,9 @@ public abstract class Unit extends Actor
                 pathFinding(gMine.getX(), gMine.getY());
                 if(goldMineTouching() == true){
                     speed = 0;
-                    gMine.subAmount(1);
-                    goldCarry += 1;
+                    if(gMine.subAmount(1)){
+                        goldCarry += 1;
+                    }
                     wentOnce = true;
                 }
             }
@@ -370,7 +370,31 @@ public abstract class Unit extends Actor
         }
         else
         {
-            move (startSpeed);
+            moveForward();
         }
+    }
+    
+    public void maxHP (int raise)
+    {
+        maxHp = raise;
+    }
+
+    public void heal (int raise)
+    {
+        currentHp += raise;
+        if (currentHp > maxHp)
+        {
+            currentHp = maxHp;  
+        }
+    }
+
+    public void betrayal (boolean choice)
+    {
+        side = choice;
+    }
+
+    public  void fast (int velocity)
+    {
+        speed = velocity;
     }
 }
