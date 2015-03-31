@@ -19,7 +19,7 @@ public class PlayerTwoMiner extends PlayerTwo
 
     public void act(){
         targetGoldMine(getGoldMine(), false);
-        healthBarMiner.setCurrentHp(currentHp);
+        healthBar.setCurrentHp(currentHp);
         if (goldCarry == 0){setImage("goldminer0.png");}
         if (goldCarry == 50){setImage("goldminer1.png");}
         if (goldCarry == 100){setImage("goldminer2.png");}
