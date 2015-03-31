@@ -4,7 +4,7 @@ import java.util.ArrayList;
 /**
  * Unit is a unit.
  * 
- * @author Kris Leung, (some code cited from Mr.Cohen's bug example), Kajamugesh Raneethran(just mutators)
+ * @author Kris Leung, (some code cited from Mr.Cohen's bug example)
  * @version Mar 2015
  */
 public abstract class Unit extends Actor
@@ -13,33 +13,28 @@ public abstract class Unit extends Actor
     protected int maxHp; //max hp of the unit
     protected int speed; //speed of which unit moves
     protected int startSpeed;
-    protected int damage = Greenfoot.getRandomNumber(5)+1; //damage unit can deal
+    protected int damage = Greenfoot.getRandomNumber(3)+1; //damage unit can deal
     protected int range; //the range where the unit can attack other units
     protected boolean dead; //sees if unit is dead
     protected boolean side; //true if playerOne side and false if playerTwo side
     protected int counter;
     protected int animTimer;
     protected Player player;
-    protected GoldMine goldMine;
-    protected GoldMine goldMine2;
-    protected Buildings building;
-    protected Buildings building2;
+    protected GoldMine goldMine, goldMine2;
+    protected Buildings building, building2;
     protected Buildings targetBuildings;
     protected ArrayList<Buildings> buildings; 
-    protected PlayerOneSoldier targetP1Unit;
-    protected ArrayList<PlayerOneSoldier> p1Unit;
-    protected PlayerTwoSoldier targetP2Unit;
-    protected ArrayList<PlayerTwoSoldier> p2Unit;
-    
-    protected HealthBar healthBarSoldier = new HealthBar(500, 500, 200, 30, 5, this);
-    protected HealthBar healthBarMiner = new HealthBar(3000, 3000, 1200, 30, 5, this);
-    
+    protected PlayerOne targetP1Unit;
+    protected ArrayList<PlayerOne> p1Unit;
+    protected PlayerTwo targetP2Unit;
+    protected ArrayList<PlayerTwo> p2Unit;
+
+    protected HealthBar healthBar = new HealthBar(500, 500, 30, 5, this);
     public void addedToWorld (World w)
     {
-        getWorld().addObject (healthBarSoldier, getX(), getY());
-        getWorld().addObject (healthBarMiner, getX(), getY());
+        getWorld().addObject (healthBar, getX(), getY());
     }
-    
+
     /**
      * Private method, called by act(), that constantly checks for closer targets
      */
@@ -149,13 +144,42 @@ public abstract class Unit extends Actor
 
     protected void moveForward ()
     {
-            speed = startSpeed;
-            move (speed);
+        speed = startSpeed;
+        move (speed);
     }
 
-    protected void targetBuilding (boolean side){
-
-    }
+//     protected void targetP1Building (){
+//         double closestTargetDistance = 0;
+//         double distanceToActor;
+//         //int numSoldiers;
+//         // Get a list of all Flowers in the World, cast it to ArrayList
+//         // for easy management
+//         buildings = (ArrayList)getWorld().getObjects(Buildings.class);
+//         if (buildings.size() > 0)
+//         {
+//             // set the first one as my target
+//             targetP1Building = p1Building.get(0);
+//             // Use method to get distance to target. This will be used
+//             // to check if any other targets are closer
+//             closestTargetDistance = Map.getDistance (this, targetP1Building);
+// 
+//             // Loop through the objects in the ArrayList to find the closest target
+//             for (Buildings o : p1Building)
+//             {
+//                 // Cast for use in generic method
+//                 Actor a = (Actor) o;
+//                 // Measure distance from me
+//                 distanceToActor = Map.getDistance(this, a);
+//                 // If I find a Flower closer than my current target, I will change
+//                 // targets
+//                 if (distanceToActor < closestTargetDistance)
+//                 {
+//                     targetP1Building = o;
+//                     closestTargetDistance = distanceToActor;
+//                 }
+//             }
+//         }
+//     }
 
     public void pathFinding(int x, int y){
         turnTowards(x, y);
@@ -172,7 +196,7 @@ public abstract class Unit extends Actor
             return false;   
         }
     }
-    
+
     public boolean buildingTouching(){
         building = (Buildings)getOneObjectAtOffset(10, 0, Buildings.class);
         building2 = (Buildings)getOneObjectAtOffset(-10, 0, Buildings.class);
@@ -200,44 +224,8 @@ public abstract class Unit extends Actor
         }
     }
     
-    /**
-     * Changes the amount of maximum hit poionts
-     * @param raise the amount maxhp will be
-     */
-    public void maxHP (int raise)
-    {
-        maxHp = raise;
-    }
-    
-    /**
-     * Changes the amount of current hit poionts
-     * @param raise the amount hp will be increased
-     */
-    public void heal (int raise)
-    {
-        currentHp += raise;
-        if (currentHp > maxHp)
-        {
-          currentHp = maxHp;  
-        }
-    }
-    
-         /**
-     * Changes which player the unit belongs to
-     * @param choice false if player one, true if player two
-     */
-    public boolean betrayal (boolean choice)
-    {
-        side = choice;
-    }
-    
-         /**
-     * Changes which player the unit belongs to
-     * @param choice false if player one, true if player two
-     */
-    public  int fast (int velocity)
-    {
-        speed = velocity;
+    public int getDamage (){
+        return damage;
     }
     
     public GoldMine getGoldMine(){
@@ -265,8 +253,8 @@ public abstract class Unit extends Actor
      * Prepare the Miner
      */
     public void prepareMiner(){
-        currentHp = 3000;
-        maxHp = 3000;
+        currentHp = 500;
+        maxHp = 500;
         speed = 1;
         startSpeed = 1;
         damage = 0;
@@ -336,7 +324,7 @@ public abstract class Unit extends Actor
                     //moveForward();
                     moveTowardOrAttackNexus();
                 }
-                healthBarSoldier.setCurrentHp(currentHp);
+                healthBar.setCurrentHp(currentHp);
             }
             else if(whichSide == true){
                 targetClosestP2Unit();
@@ -352,7 +340,7 @@ public abstract class Unit extends Actor
                     //moveForward();
                     moveTowardOrAttackNexus();
                 }
-                healthBarSoldier.setCurrentHp(currentHp);
+                healthBar.setCurrentHp(currentHp);
             }
         }
         // Death:
