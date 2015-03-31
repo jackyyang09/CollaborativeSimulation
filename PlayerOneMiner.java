@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Write a description of class PlayerOneMiner here.
  * 
  * @author Kris Leung
- * @version (a version number or a date)
+ * @version March 2015
  */
 public class PlayerOneMiner extends Miner
 {
