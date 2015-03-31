@@ -18,19 +18,22 @@ public abstract class Unit extends Actor
     protected boolean dead; //sees if unit is dead
     protected boolean side; //true if playerOne side and false if playerTwo side
     protected int counter;
+    protected int animTimer;
     protected Player player;
-    GoldMine goldMine;
-    GoldMine goldMine2;
-    Buildings building;
-    Buildings building2;
+    protected GoldMine goldMine;
+    protected GoldMine goldMine2;
+    protected Buildings building;
+    protected Buildings building2;
     protected Buildings targetBuildings;
     protected ArrayList<Buildings> buildings; 
-    protected PlayerOneSoldier targetP1Soldier;
-    protected ArrayList<PlayerOneSoldier> p1Soldier;
-    protected PlayerTwoSoldier targetP2Soldier;
-    protected ArrayList<PlayerTwoSoldier> p2Soldier;
+    protected PlayerOneSoldier targetP1Unit;
+    protected ArrayList<PlayerOneSoldier> p1Unit;
+    protected PlayerTwoSoldier targetP2Unit;
+    protected ArrayList<PlayerTwoSoldier> p2Unit;
     
-    protected HealthBar healthBar = new HealthBar(500, 500, 200, 30, 5, this);
+    protected HealthBar healthBarSoldier = new HealthBar(500, 500, 200, 30, 5, this);
+    protected HealthBar healthBarMiner = new HealthBar(3000, 3000, 1200, 30, 5, this);
+    
     public void addedToWorld (World w)
     {
         getWorld().addObject (healthBar, getX(), getY());
@@ -39,24 +42,24 @@ public abstract class Unit extends Actor
     /**
      * Private method, called by act(), that constantly checks for closer targets
      */
-    protected void targetClosestP1Soldier ()
+    protected void targetClosestP1Unit ()
     {
         double closestTargetDistance = 0;
         double distanceToActor;
         //int numSoldiers;
         // Get a list of all Flowers in the World, cast it to ArrayList
         // for easy management
-        p1Soldier = (ArrayList)getWorld().getObjects(PlayerOneSoldier.class);
-        if (p1Soldier.size() > 0)
+        p1Unit = (ArrayList)getWorld().getObjects(PlayerOne.class);
+        if (p1Unit.size() > 0)
         {
             // set the first one as my target
-            targetP1Soldier = p1Soldier.get(0);
+            targetP1Unit = p1Unit.get(0);
             // Use method to get distance to target. This will be used
             // to check if any other targets are closer
-            closestTargetDistance = Map.getDistance (this, targetP1Soldier);
+            closestTargetDistance = Map.getDistance (this, targetP1Unit);
 
             // Loop through the objects in the ArrayList to find the closest target
-            for (PlayerOneSoldier o : p1Soldier)
+            for (PlayerOne o : p1Unit)
             {
                 // Cast for use in generic method
                 Actor a = (Actor) o;
@@ -66,27 +69,27 @@ public abstract class Unit extends Actor
                 // targets
                 if (distanceToActor < closestTargetDistance)
                 {
-                    targetP1Soldier = o;
+                    targetP1Unit = o;
                     closestTargetDistance = distanceToActor;
                 }
             }
         }
     }
 
-    protected void targetClosestP2Soldier(){
+    protected void targetClosestP2Unit(){
         double closestTargetDistance = 0;
         double distanceToActor;
-        p2Soldier = (ArrayList)getWorld().getObjects(PlayerTwoSoldier.class);
-        if (p2Soldier.size() > 0)
+        p2Unit = (ArrayList)getWorld().getObjects(PlayerTwo.class);
+        if (p2Unit.size() > 0)
         {
             // set the first one as my target
-            targetP2Soldier = p2Soldier.get(0);
+            targetP2Unit = p2Unit.get(0);
             // Use method to get distance to target. This will be used
             // to check if any other targets are closer
-            closestTargetDistance = Map.getDistance (this, targetP2Soldier);
+            closestTargetDistance = Map.getDistance (this, targetP2Unit);
 
             // Loop through the objects in the ArrayList to find the closest target
-            for (PlayerTwoSoldier o : p2Soldier)
+            for (PlayerTwo o : p2Unit)
             {
                 // Cast for use in generic method
                 Actor a = (Actor) o;
@@ -96,7 +99,7 @@ public abstract class Unit extends Actor
                 // targets
                 if (distanceToActor < closestTargetDistance)
                 {
-                    targetP2Soldier = o;
+                    targetP2Unit = o;
                     closestTargetDistance = distanceToActor;
                 }
             }
@@ -109,12 +112,13 @@ public abstract class Unit extends Actor
      */
     protected void moveTowardOrAttackP1 ()
     {
-        turnTowards(targetP1Soldier.getX(), targetP1Soldier.getY());
+        turnTowards(targetP1Unit.getX(), targetP1Unit.getY());
 
-        if (this.getNeighbours (50, true, PlayerOneSoldier.class).size() > 0)
+        if (this.getNeighbours (range, true, PlayerOne.class).size() > 0)
         {
             speed = 0;
-            targetP1Soldier.dealDamage(damage);
+            //getWorld().addObject(new Bullet(targetP1Soldier, false), getX(), getY());
+            targetP1Unit.dealDamage(damage);
         }
         else
         {
@@ -128,12 +132,13 @@ public abstract class Unit extends Actor
      */
     protected void moveTowardOrAttackP2 ()
     {
-        turnTowards(targetP2Soldier.getX(), targetP2Soldier.getY());
+        turnTowards(targetP2Unit.getX(), targetP2Unit.getY());
 
-        if (this.getNeighbours (50, true, PlayerTwoSoldier.class).size() > 0)
+        if (this.getNeighbours (range, true, PlayerTwo.class).size() > 0)
         {
             speed = 0;
-            targetP2Soldier.dealDamage(damage);
+            //getWorld().addObject(new Bullet(targetP2Soldier, true), getX(), getY());
+            targetP2Unit.dealDamage(damage);
         }
         else
         {
@@ -232,5 +237,147 @@ public abstract class Unit extends Actor
     public  int fast (int velocity)
     {
         speed = velocity;
+    }
+    
+    public GoldMine getGoldMine(){
+        if(wentOnce == true){
+            if(Greenfoot.getRandomNumber(2) == 0){
+                gMine = gMine1;
+            }
+            else{
+                gMine = gMine2;
+            }
+            wentOnce = false;
+        }
+        return gMine;
+    }
+    
+    protected int goldCarry = 0;
+    protected int maxCarry = 100;
+    protected GoldMine gMine;
+    protected GoldMine gMine1;
+    protected GoldMine gMine2;
+    protected Nexus nexus;
+    protected boolean wentOnce = true;
+    
+    /**
+     * Prepare the Miner
+     */
+    public void prepareMiner(){
+        currentHp = 500;
+        maxHp = 500;
+        speed = 1;
+        startSpeed = 1;
+        damage = 0;
+        range = 5;
+        dead = false;
+    }
+
+    /**
+     * Act - do whatever the Soldier wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void targetGoldMine(GoldMine g, boolean whichSide){
+        if (currentHp > 0)
+        {
+            if (goldCarry == maxCarry){
+                pathFinding(nexus.getX(), nexus.getY());
+                speed = startSpeed;
+            }
+            else{
+                pathFinding(gMine.getX(), gMine.getY());
+                if(goldMineTouching() == true){
+                    speed = 0;
+                    gMine.subAmount(1);
+                    goldCarry += 1;
+                    wentOnce = true;
+                }
+            }
+            if (this.isTouching(Nexus.class)){
+                player.addGold(goldCarry);
+                goldCarry = 0;
+            }
+        }
+        // Death:
+        else
+        {
+            getWorld().removeObject(this);
+        }
+    }    
+    
+    /**
+     * Prepare method for Soldier
+     */
+    public void prepareSoldier(){
+        currentHp = 500;
+        maxHp = 500;
+        speed = 1;
+        startSpeed = 1;
+        range = 100;
+        dead = false;
+    }
+
+    public void targetUnit(boolean whichSide){
+        if (currentHp > 0)
+        {
+            if (whichSide == false) // Only run every 4 acts to avoid lag
+            {
+                targetClosestP1Unit();
+                if (targetP1Unit != null && targetP1Unit.getWorld() != null)
+                {
+                    moveTowardOrAttackP1();
+                }
+                else if (buildingTouching()){
+                    speed = 0;
+                }
+                else
+                {
+                    //moveForward();
+                    moveTowardOrAttackNexus();
+                }
+                healthBar.setCurrentHp(currentHp);
+            }
+            else if(whichSide == true){
+                targetClosestP2Unit();
+                if (targetP2Unit != null && targetP2Unit.getWorld() != null)
+                {
+                    moveTowardOrAttackP2();
+                }
+                else if (buildingTouching()){
+                    speed = 0;
+                }
+                else
+                {
+                    //moveForward();
+                    moveTowardOrAttackNexus();
+                }
+                healthBar.setCurrentHp(currentHp);
+            }
+        }
+        // Death:
+        else
+        {
+            getWorld().removeObject(this);
+        }
+    }
+    
+    /**
+     * Private method, calle by act(), that moves toward the target,
+     * or eats it if within range.
+     */
+    protected void moveTowardOrAttackNexus ()
+    {
+        turnTowards(nexus.getX(), nexus.getY());
+
+        if (this.getNeighbours (range, true, Nexus.class).size() > 0)
+        {
+            speed = 0;
+            //getWorld().addObject(new Bullet(targetP2Soldier, true), getX(), getY());
+            nexus.dealDamage(damage);
+        }
+        else
+        {
+            move (startSpeed);
+        }
     }
 }
