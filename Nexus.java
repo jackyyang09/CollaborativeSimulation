@@ -9,7 +9,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Nexus extends Buildings
 {
     private HealthBar healthBar = new HealthBar(50000, 50000, 10000, -75, 30, 5, this);
-    private boolean prepare = false;
     public void addedToWorld (World w)
     {
         getWorld().addObject (healthBar, getX(), getY());
@@ -24,15 +23,8 @@ public class Nexus extends Buildings
 
     public void act()
     {   
-        if (prepare == false){prepare();}
-        regen();  
-    }
-    
-    public void prepare()
-    {
         if (graphic == 1){setImage("golding2.png");}
-        if (graphic == 2){getImage().mirrorHorizontally);}
-        prepare = true;
+        regen();  
     }
 
     /**
