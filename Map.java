@@ -137,4 +137,8 @@ public class Map extends World
             }   
         }
     }
+    
+    public int getPopOpponentSoldier(int p){
+        return 4;
+    }
 }
