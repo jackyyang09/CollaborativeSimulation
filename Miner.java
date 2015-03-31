@@ -14,8 +14,8 @@ public class Miner extends Unit
     protected GoldMine gMine1;
     protected GoldMine gMine2;
     protected Nexus nexus;
-    protected wentOnce = true;
-    
+    protected boolean wentOnce = true;
+
     /**
      * Preparation for Miner
      */
@@ -49,17 +49,16 @@ public class Miner extends Unit
                 } else {
                     pathFinding(gMine.getX(), gMine.getY());
                 }
-                }
-            }
-            if (this.isTouching(Nexus.class)){
-                player.addGold(goldCarry);
-                goldCarry = 0;
             }
         }
-        // Death:
+        if (this.isTouching(Nexus.class)){
+            player.addGold(goldCarry);
+            goldCarry = 0;
+        }
+        // Death
         else
         {
             getWorld().removeObject(this);
-        }
-    }    
+        }    
+    }
 }
