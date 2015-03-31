@@ -9,13 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class PlayerTwoSoldier extends PlayerTwo
 {
     public PlayerTwoSoldier(Nexus n){
-        prepare();
+        prepareSoldier();
         side = false;
         nexus = n;
     }
     
     public void act(){
-        target(false);
+        targetUnit(false);
         if(speed != 0){
             animate();
         }
