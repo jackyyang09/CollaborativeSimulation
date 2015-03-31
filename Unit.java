@@ -198,16 +198,16 @@ public abstract class Unit extends Actor
      * Changes the amount of maximum hit poionts
      * @param raise the amount maxhp will be
      */
-    public void int maxHP (int raise)
+    public void maxHP (int raise)
     {
         maxHp = raise;
     }
     
-        /**
+    /**
      * Changes the amount of current hit poionts
      * @param raise the amount hp will be increased
      */
-    public void int heal (int raise)
+    public void heal (int raise)
     {
         currentHp += raise;
         if (currentHp > maxHp)
@@ -220,7 +220,7 @@ public abstract class Unit extends Actor
      * Changes which player the unit belongs to
      * @param choice false if player one, true if player two
      */
-    public void boolean betrayal (boolean choice)
+    public boolean betrayal (boolean choice)
     {
         side = choice;
     }
@@ -229,7 +229,7 @@ public abstract class Unit extends Actor
      * Changes which player the unit belongs to
      * @param choice false if player one, true if player two
      */
-    public void int fast (int velocity)
+    public  int fast (int velocity)
     {
         speed = velocity;
     }
