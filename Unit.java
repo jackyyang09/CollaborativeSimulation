@@ -364,7 +364,7 @@ public abstract class Unit extends Actor
     {
         turnTowards(nexus.getX(), nexus.getY());
 
-        if (this.getNeighbours (range, true, Nexus.class).size() > 0)
+        if (this.getNeighbours (150, true, Nexus.class).size() > 0)
         {
             speed = 0;
             //getWorld().addObject(new Bullet(targetP2Soldier, true), getX(), getY());
