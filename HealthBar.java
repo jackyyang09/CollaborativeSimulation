@@ -120,7 +120,7 @@ public class HealthBar extends Actor
      */
     public HealthBar (int CurrentHp, int MaxHp, int dangerValue, int offset, int HpBarWidth, int HpBarHeight, Actor target){
         this.dangerValue = dangerValue;
-        this.offset = offset
+        this.offset = offset;
         hpBarWidth = HpBarWidth;
         hpBarHeight = HpBarHeight;
         hpBar = new GreenfootImage(hpBarWidth, hpBarHeight); //makes a new Health Bar
