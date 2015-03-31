@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Operates static images and miscellaneous animation on screen
  * 
- * @Jacky Yang
- * @Day 17 WIP
+ * @author Jacky Yang
+ * @version Final
  */
 public class Graphics extends Actor
 {
@@ -12,12 +12,12 @@ public class Graphics extends Actor
     private int animTimer;
     private boolean prepare;
     private int animType;
-    
+
     /**
- * Operates static images and miscellaneous animation on screen
- * 
- * @param val 1 for construction animation
- */
+     * Operates static images and miscellaneous animation on screen
+     * 
+     * @param val 1 for construction animation
+     */
     public Graphics(int val)
     {
         type = val;
@@ -40,6 +40,9 @@ public class Graphics extends Actor
         animTimer++;
     }    
 
+    /**
+     * Rotates the hammer consistently
+     */
     private void construction()
     {
         if (getRotation()== 0){animType = 1;}
