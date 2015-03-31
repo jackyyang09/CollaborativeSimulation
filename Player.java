@@ -149,22 +149,25 @@ public class Player extends Actor
         Player playerTwo;
     private void buyUnits()
     {
-
-//         if (player == 1){
-//             getWorld().addObject(new Soldier(playerOne, true), 225, 320);
-//             cooldown = 2400;
-//         }
-//         if (player == 2){
-//             getWorld().addObject(new Soldier(playerTwo, false), 735, 320);
-//             cooldown = 3200;
-//         }
-        if(player==1){
-            ((Map)getWorld()).spawnUnit(1, true);
-            cooldown = 3000;
+    if(Greenfoot.getRandomNumber(2) == 0){
+            if(player==1){
+                ((Map)getWorld()).spawnUnit(1, true);
+                cooldown = 3000;
+            }
+            if(player==2){
+                ((Map)getWorld()).spawnUnit(1, false);
+                cooldown = 3000;
+            }
         }
-        if(player==2){
-            ((Map)getWorld()).spawnUnit(1, false);
-            cooldown = 3000;
+        else{
+            if(player==1){
+                ((Map)getWorld()).spawnUnit(0, true);
+                cooldown = 3000;
+            }
+            if(player==2){
+                ((Map)getWorld()).spawnUnit(0, false);
+                cooldown = 3000;
+            }
         }
         gold -= 200; 
     }
