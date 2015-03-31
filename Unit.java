@@ -30,7 +30,7 @@ public abstract class Unit extends Actor
     protected PlayerTwoSoldier targetP2Soldier;
     protected ArrayList<PlayerTwoSoldier> p2Soldier;
     
-    protected HealthBar healthBar = new HealthBar(500, 500, 30, 5, this);
+    protected HealthBar healthBar = new HealthBar(500, 500, 200, 30, 5, this);
     public void addedToWorld (World w)
     {
         getWorld().addObject (healthBar, getX(), getY());
