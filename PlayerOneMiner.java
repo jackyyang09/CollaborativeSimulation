@@ -24,3 +24,4 @@ public class PlayerOneMiner extends PlayerOne
         if (goldCarry == 50){setImage("miner1.png");}
         if (goldCarry == 100){setImage("miner2.png");}
     }
+}
