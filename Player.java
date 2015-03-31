@@ -34,8 +34,8 @@ public class Player extends Actor
         buyCount = 0;
         buildPerc = 0;
         decision = 3;
-        if (player == 1){cooldown = 1200;}
-        if (player == 2){cooldown = 1600;}
+        if (player == 1){cooldown = 2000;}
+        if (player == 2){cooldown = 2000;}
     }
 
     /**
@@ -73,7 +73,7 @@ public class Player extends Actor
      */
     public void addGold(int amtgold)
     {
-        gold += amtgold;
+        gold += amtgold;    
     }
 
     /**
@@ -147,29 +147,33 @@ public class Player extends Actor
         }
     }
 
-private void buyUnits()
+    private void buyUnits()
     {
         if(Greenfoot.getRandomNumber(2) == 0){
             gold -= 200; 
             if(player==1){
                 ((Map)getWorld()).spawnUnit(1, true);
-                cooldown = 1200;
+                if (panic == false){cooldown = 2000;}
+                else{cooldown = 1200;}
             }
             if(player==2){
                 ((Map)getWorld()).spawnUnit(1, false);
-                cooldown = 1600;
+                if (panic == false){cooldown = 2000;}
+                else{cooldown = 1200;}
             }
         }
         else{
-            gold -= 500;
-            if (factoryCount > 0){
-                if(player==1){
-                    ((Map)getWorld()).spawnUnit(0, true);
-                    cooldown = 1200;
-                }
-                if(player==2){
-                    ((Map)getWorld()).spawnUnit(0, false);
-                    cooldown = 1600;
+            if (gold >= 500){
+                gold -= 500;
+                if (factoryCount > 0){
+                    if(player==1){
+                        ((Map)getWorld()).spawnUnit(0, true);
+                        cooldown = 2000;
+                    }
+                    if(player==2){
+                        ((Map)getWorld()).spawnUnit(0, false);
+                        cooldown = 2000;
+                    }
                 }
             }
         }
