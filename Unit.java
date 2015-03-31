@@ -281,6 +281,7 @@ public abstract class Unit extends Actor
                     wentOnce = true;
                 }
                 else{
+                    speed = startSpeed;
                     pathFinding(gMine.getX(), gMine.getY());
                 }
             }
