@@ -61,8 +61,10 @@ public class Player extends Actor
         cooldown--;
         if (buyCount < 4 && decision == 3){buyBuildings();}
         if (decision == 1 && gold >= 1000){buyBarracks();}
-        if (decision == 2 && gold >= 1500){buyFactory();}
+        if (decision == 2 && gold >= 1500 && panic == false){buyFactory();}
         if (barracksCount > 0 && cooldown <= 0 && gold >= 200){buyUnits();}
+        if (((Map)getWorld()).getPopOpponentSoldier(player) - getSoldiers() >= 4){panic = true;}
+        else{panic = false;}
     }
 
     /**
