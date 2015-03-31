@@ -110,6 +110,28 @@ public class HealthBar extends Actor
         this.setImage(hpBar); //sets the image defined above
         following = true;
     }
+    
+    /**
+     * Accepts a total Health which is the max HP that the owner has and accepts an actor to be set as the owner
+     * 
+     * @param CurrentHp current health of the health bar's owner
+     * @param MaxHp Max Health of the Health Bar's owner
+     * @param target The owner of this Health Bar
+     */
+    public HealthBar (int CurrentHp, int MaxHp, int dangerValue, int offset, int HpBarWidth, int HpBarHeight, Actor target){
+        this.dangerValue = dangerValue;
+        this.offset = offset
+        hpBarWidth = HpBarWidth;
+        hpBarHeight = HpBarHeight;
+        hpBar = new GreenfootImage(hpBarWidth, hpBarHeight); //makes a new Health Bar
+        hpBar.setColor(hpBarColor); //sets the colour for the Health Bar to be green
+        hpBar.fill(); //fill the Health Bar
+        currentHp = CurrentHp; //sets current health
+        maxHp = MaxHp; //sets max health
+        this.owner = target; //sets its owner
+        this.setImage(hpBar); //sets the image defined above
+        following = true;
+    }
 
     /**
      * act method gets run every act to run update
