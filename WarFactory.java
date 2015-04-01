@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Does what a little War Factory does
+ * Required for miners and tanks to spawn
  * 
- * @Jacky Yang
- * @Day X WIP
+ * @author Jacky Yang
+ * @version Final
  */
 public class WarFactory extends Buildings
 {
