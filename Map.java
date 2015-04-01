@@ -129,11 +129,11 @@ public class Map extends World
         else if(code == 1){
             if(side == true){
                 //true for player 1
-                addObject(new PlayerOneSoldier(nexusTwo), 251, 320);
+                addObject(new PlayerOneSoldier(nexusTwo, playerOne), 251, 320);
                 playerOne.addSoldiers(1);
             }
             else{
-                addObject(new PlayerTwoSoldier(nexusOne), 709, 320);
+                addObject(new PlayerTwoSoldier(nexusOne, playerTwo), 709, 320);
                 playerTwo.addSoldiers(1);
             }   
         }
