@@ -60,6 +60,7 @@ public class Player extends Actor
     public void act() 
     {
         if (prepare == false){prepare();}
+        if (cooldown%50 == 0){gold++;}
         cooldown--;
         if (buyCount < 4 && decision == 3){buyBuildings();}
         if (decision == 1 && gold >= 1000){buyBarracks();}
