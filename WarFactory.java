@@ -8,12 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class WarFactory extends Buildings
 {
-    private HealthBar healthBar = new HealthBar(10000, 10000, 2000, 0, 50, 15, this);
-    public void addedToWorld (World w)
-    {
-        getWorld().addObject (healthBar, getX(), getY());
-    }
-    
     public WarFactory(int player)
     {
         graphic = player;
