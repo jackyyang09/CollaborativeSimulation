@@ -4,7 +4,7 @@ import java.util.ArrayList;
 /**
  * Unit is a unit.
  * 
- * @author Kris Leung, (some code cited from Mr.Cohen's bug example)
+ * @author Kris Leung, (some code cited from Mr.Cohen's bug example) Kajamugesh Raneethran (just mutators and accessors)
  * @version Mar 2015
  */
 public abstract class Unit extends Actor
