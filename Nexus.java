@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * The Nexus, does a bunch of things
  * 
- * @Jacky Yang
- * @Day 1
+ * @author Jacky Yang
+ * @version Day 1
  */
 public class Nexus extends Buildings
 {
@@ -14,6 +14,9 @@ public class Nexus extends Buildings
         getWorld().addObject (healthBar, getX(), getY());
     }
 
+    /**
+     * Constructor
+     */
     public Nexus(int player)
     {
         graphic = player;
