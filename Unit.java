@@ -269,8 +269,8 @@ public abstract class Unit extends Actor
         if (currentHp > 0)
         {
             if (goldCarry == maxCarry){
-                pathFinding(nexus.getX(), nexus.getY());
                 speed = startSpeed;
+                pathFinding(nexus.getX(), nexus.getY());
             }
             else{
                 if(goldMineTouching() == true){
