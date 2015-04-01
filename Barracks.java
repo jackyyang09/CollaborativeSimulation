@@ -37,12 +37,6 @@ public class Barracks extends Buildings
         if (buildTime > 0){buildTime--;}
         if (buildTime == 0){removeTouching(Graphics.class);}
         regen();
-        if(health > 0){
-            healthBar.setCurrentHp(health);
-        }
-        else{
-            getWorld().removeObject(this);
-        }
     }
     
     /**
