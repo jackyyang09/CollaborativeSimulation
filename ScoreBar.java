@@ -32,7 +32,7 @@ public class ScoreBar extends Actor
     public ScoreBar ()
     {
         scoreBoard = new GreenfootImage (960, 30);
-        background = new Color (175, 20, 23);
+        background = new Color (1, 20, 23);
         foreground = new Color (255, 255, 255);
         textFont = new Font ("Courier", Font.BOLD, 24);
         scoreBoard.setColor(background);
