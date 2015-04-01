@@ -1,4 +1,4 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+I import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Does what a Barracks does
@@ -8,11 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Barracks extends Buildings
 {
-     private HealthBar healthBar = new HealthBar(10000, 10000, 2000, 0, 50, 15, this);
-    public void addedToWorld (World w)
-    {
-        getWorld().addObject (healthBar, getX(), getY());
-    }
     
    /**
  * Does what a Barracks does
