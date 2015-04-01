@@ -57,9 +57,9 @@ public class Map extends World
         }
         if (toggle && !Greenfoot.isKeyDown("space") && ("space".equals(Greenfoot.getKey()))){
             addObject(score, 480,15);// added here so building doesn't block stats
-            score.update(playerOne.getSoldiers(), playerTwo.getSoldiers(), playerOne.getGold(), playerTwo.getGold());
             toggle = false;
         }
+        score.update(playerOne.getSoldiers(), playerTwo.getSoldiers(), playerOne.getGold(), playerTwo.getGold());
     }
 
     /**
