@@ -13,6 +13,10 @@ public class Map extends World
     GoldMine goldMineTwo = new GoldMine();
     Nexus nexusOne = new Nexus(1);
     Nexus nexusTwo = new Nexus(2);
+    Grimm one = new Grimm();
+    Grimm two = new Grimm();
+    boolean one = false;
+    boolean two = false;
     Player playerOne;
     Player playerTwo;
     ScoreBar score = new ScoreBar();
@@ -46,6 +50,18 @@ public class Map extends World
      */
     public void act(){
         toggleStats();
+        if (nexusOne.currentHp < nexusOne.maxHp/2 && one == false)
+        {
+            addObject(Grimm,155,320);
+            one.betrayal(true);
+            one = true;
+        }
+        if (nexusTwo.currentHp < nexusTwo.maxHp/2 && two == false)
+        {
+            addObject(Grimm,800,320);
+            two.betrayal(true);
+            two = true;
+        }
     }
 
     /**
