@@ -17,6 +17,7 @@ public class Barracks extends Buildings
     public Barracks(int player)
     {
         graphic = player;
+        health = 5000;
     }
 
     /**
