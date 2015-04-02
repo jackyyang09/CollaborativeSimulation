@@ -363,7 +363,7 @@ public abstract class Unit extends Actor
         {
             speed = 0;
             //getWorld().addObject(new Bullet(targetP2Soldier, true), getX(), getY());
-            nexus.dealDamage(damage);
+            nexus.dealDamage(getDamage());
         }
         else
         {
