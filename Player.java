@@ -18,6 +18,8 @@ public class Player extends Actor
     private int barracksCount, factoryCount;
     private int decision;
     private int cooldown;
+    private int cooldown2 = 500;
+    private int cooldown3 = 250;
     private int popSoldier = 0;
     private int popMiner = 0;
     private Boolean[] occupied = new Boolean[5];
@@ -67,7 +69,9 @@ public class Player extends Actor
         if (buyCount < 4 && decision == 3){buyBuildings();}
         if (decision == 1 && gold >= 1000){buyBarracks();}
         if (decision == 2 && gold >= 1500 && panic == false){buyFactory();}
-        if (barracksCount > 0 && cooldown <= 0 && gold >= 200){buyUnits();}
+        if (barracksCount > 0 && cooldown <= 0){buyUnits();}
+        if (barracksCount == 2 || factoryCount == 2){cooldown = cooldown2;}
+        else if (barracksCount == 3 || factoryCount == 3){cooldown = cooldown3;}
         if (((Map)getWorld()).getPopOpponentSoldier(player) - getSoldiers() >= 4){panic = true;}
         else{panic = false;}
     }
@@ -159,7 +163,6 @@ public class Player extends Actor
     private void buyUnits()
     {
         if(Greenfoot.getRandomNumber(2) == 0){
-            gold -= 200; 
             if(player==1){
                 ((Map)getWorld()).spawnUnit(1, true);
                 if (panic == false){cooldown = 2000;}
@@ -172,8 +175,7 @@ public class Player extends Actor
             }
         }
         else{
-            if (gold >= 500){
-                gold -= 500;
+            
                 if (factoryCount > 0){
                     if(player==1){
                         ((Map)getWorld()).spawnUnit(0, true);
@@ -183,7 +185,7 @@ public class Player extends Actor
                         ((Map)getWorld()).spawnUnit(0, false);
                         cooldown = 2000;
                     }
-                }
+                
             }
         }
     }
