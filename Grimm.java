@@ -17,5 +17,6 @@ public class PlayerOneGrimm extends PlayerTwoSoldier
     
     public void act(){
         targetUnit(side);
+        currentHp--;
     }
 }
