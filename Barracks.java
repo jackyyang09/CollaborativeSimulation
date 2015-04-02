@@ -11,7 +11,7 @@ public class Barracks extends Buildings
 
     /**
      * Does what a Barracks does
-     * Chooses which side 
+     * Chooses which side the barracks belongs to
      * 
      * @param player 1 if player one, 2 if player two
      */ 
