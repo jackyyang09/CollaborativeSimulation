@@ -13,20 +13,22 @@ public class Map extends World
     GoldMine goldMineTwo = new GoldMine();
     Nexus nexusOne = new Nexus(1);
     Nexus nexusTwo = new Nexus(2);
-    Player playerOne = new Player(1);
-    Player playerTwo = new Player(2);
+    Player playerOne;
+    Player playerTwo;
     ScoreBar score = new ScoreBar();
     boolean toggle = true;// removes score bar if false
-    int lag =10;// prevents flashing by having a 10 act wait
+    int lag = 10;// prevents flashing by having a 10 act wait
     /**
      * Constructor for objects of class Map.
      * 
      */
-    public Map()
+    public Map(int gold1, int gold2)
     {    
         // Create a new world with  960x640 cells
         super(960, 640, 1);
+        playerOne = new Player(1, gold1);
         addObject(playerOne,0,0);
+        playerTwo = new Player(2, gold2);
         addObject(playerTwo,0,0);
         addObject(goldMineOne,480,520);
         addObject(goldMineTwo,480,120);
@@ -39,7 +41,7 @@ public class Map extends World
         spawnUnit(1, false);
     }
 
-     /**
+    /**
      * 
      */
     public void act(){
@@ -129,11 +131,11 @@ public class Map extends World
         else if(code == 1){
             if(side == true){
                 //true for player 1
-                addObject(new PlayerOneSoldier(nexusTwo, playerOne), 251, 320);
+                addObject(new PlayerOneSoldier(nexusTwo), 251, 320);
                 playerOne.addSoldiers(1);
             }
             else{
-                addObject(new PlayerTwoSoldier(nexusOne, playerTwo), 709, 320);
+                addObject(new PlayerTwoSoldier(nexusOne), 709, 320);
                 playerTwo.addSoldiers(1);
             }   
         }
