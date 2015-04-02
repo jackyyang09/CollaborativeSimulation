@@ -14,6 +14,7 @@ public abstract class Unit extends Actor
     protected int speed; //speed of which unit moves
     protected int startSpeed;
     protected int damage; //damage unit can deal
+    protected int strength = 3;// range of damage
     protected int range; //the range where the unit can attack other units
     protected boolean dead; //sees if unit is dead
     protected boolean side; //true if playerOne side and false if playerTwo side
@@ -223,8 +224,20 @@ public abstract class Unit extends Actor
         }
     }
     
+    /**
+     * Decides amount of damage determined by strength;
+     */
     public int getDamage (){
-        return Greenfoot.getRandomNumber(3)+1;
+        return Greenfoot.getRandomNumber(strength)+1;
+    }
+    
+    /**
+     * Decides amount of damage determined by strength;
+     * @param strong the reange of damage a soldier does
+     */
+    public void enchance (int strong)
+    {
+        strength = strong;
     }
     
     public GoldMine getGoldMine(){
