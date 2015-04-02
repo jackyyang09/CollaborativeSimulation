@@ -30,7 +30,9 @@ public class Nexus extends Buildings
             healthBar.setCurrentHp(health);
         }
         else{
-            getWorld().removeObject(this);
+            Graphics screen = new Graphics(3 - graphic);
+            getWorld().addObject(screen, 480, 320);
+            getWorld().removeObject(this);  
         }
         if (graphic == 1){setImage("golding2.png");}
         regen();  
