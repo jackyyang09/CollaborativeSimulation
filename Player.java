@@ -28,10 +28,12 @@ public class Player extends Actor
      * Instantiates Player 
      * 
      * @param AI An integer value of either 1 or 2, decides which side to make decisions for
+     * @param gold An integer value that represents their starting gold value
      */
-    public Player(int AI)
+    public Player(int AI, int gold)
     {
         player = AI;
+        this.gold = gold;
         nexus = new Nexus(player);
         buyCount = 0;
         buildPerc = 0;
