@@ -13,6 +13,10 @@ public class GoldMine extends Buildings
     protected int maxAmount;//maximum amount of gold that can be in the mine
     protected int regen;//amount of time required for gold to be added
     protected int time = 0;//time left until gold is added to mine
+    /**
+     * Constructor for Goldmine
+     * 
+     */
     public GoldMine()
     {
         maxAmount= 5000;
