@@ -19,6 +19,7 @@ public class WarFactory extends Buildings
      */
     public void act() 
     {
+        if (graphic == 1){setImage("golding3.png");}
         regen();
     }    
 }
