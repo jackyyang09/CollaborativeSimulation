@@ -9,10 +9,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Graphics extends Actor
 {
     private int type;
-    private int animTimer;
-    private boolean prepare;
-    private int animType;
-
     /**
      * Operates static images and miscellaneous animation on screen
      * 
@@ -21,8 +17,6 @@ public class Graphics extends Actor
     public Graphics(int val)
     {
         type = val;
-        animTimer = 0;
-        prepare = false;
     }
 
     /**
@@ -31,23 +25,8 @@ public class Graphics extends Actor
      */
     public void act() 
     {
-        if (prepare == false)
-        {
-            if (type == 1){setImage("hammer1.png");}
-            prepare = true;
-        }
-        if (type == 1){construction();}
-        animTimer++;
+        if (type == 1){setImage("goldwin.png");}
+        if (type == 2){setImage("silverwin.png");}
+        Greenfoot.stop();
     }    
-
-    /**
-     * Rotates the hammer consistently
-     */
-    private void construction()
-    {
-        if (getRotation()== 0){animType = 1;}
-        if (getRotation() == 270){animType = 2;}
-        if (animType == 1){setRotation(getRotation() - 2);}
-        if (animType == 2){setRotation(getRotation() + 2);}
-    }
 }
