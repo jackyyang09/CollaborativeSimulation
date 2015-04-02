@@ -59,7 +59,7 @@ public class Map extends World
         if (nexusTwo.currentHp < nexusTwo.maxHp/2 && two == false)
         {
             addObject(Grimm,800,320);
-            two.betrayal(true);
+            two.betrayal(false);
             two = true;
         }
     }
