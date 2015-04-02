@@ -59,15 +59,6 @@ public class Barracks extends Buildings
         if (graphic == 1){setImage("golding1.png");}
         regen();
     }
-
-    /**
-     * Method that is called when Barracks is destroyed
-     * Will likely decrease a value within the player class
-     */
-    public void destroy()
-    {
-        //Code goes here
-    }
 }
 
         regen();
