@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class PlayerTwoSoldier here.
+ * Player Two's Soldier
  * 
  * @author Jacky Yang
  * @version (a version number or a date)
