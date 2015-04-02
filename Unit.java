@@ -319,9 +319,6 @@ public abstract class Unit extends Actor
                 {
                     moveTowardOrAttackP1();
                 }
-                else if (buildingTouching()){
-                    speed = 0;
-                }
                 else
                 {
                     //moveForward();
@@ -336,9 +333,6 @@ public abstract class Unit extends Actor
                 if (targetP2Unit != null && targetP2Unit.getWorld() != null)
                 {
                     moveTowardOrAttackP2();
-                }
-                else if (buildingTouching()){
-                    speed = 0;
                 }
                 else
                 {
